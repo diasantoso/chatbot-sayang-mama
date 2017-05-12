@@ -68,4 +68,19 @@ class BotController extends Controller
       }
     }
   }
+
+  public function test() {
+    // init bot
+    $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+    $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
+
+    $userId = "Ud6c98299e8a444e219b9479efe772f52";
+
+    $textSend = "coba ping cron jobs - ".Carbon::now();
+
+    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+    $result = $bot->pushMessage($userId, $textMessageBuilder);
+
+    return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+  }
 }

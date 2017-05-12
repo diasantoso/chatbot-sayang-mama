@@ -49,7 +49,7 @@ Route::post('sesi-store', 'SesiController@store')->name('sesi.store');
 Route::get('sesi-edit/{id}', 'SesiController@edit')->name('sesi.edit');
 Route::patch('sesi-update/{id}', 'SesiController@update')->name('sesi.update');
 Route::get('sesi-delete/{id}', 'SesiController@destroy')->name('sesi.destroy');
-Route::get('sesiTerhapus-restore/{id}', 'SesiController@terhapusRestore')->name('sesiTerhapus.restore');
+// Route::get('sesiTerhapus-restore/{id}', 'SesiController@terhapusRestore')->name('sesiTerhapus.restore');
 
 
 //makul
@@ -60,7 +60,7 @@ Route::post('makul-store', 'MakulController@store')->name('makul.store');
 Route::get('makul-edit/{id}', 'MakulController@edit')->name('makul.edit');
 Route::patch('makul-update/{id}', 'MakulController@update')->name('makul.update');
 Route::get('makul-delete/{id}', 'MakulController@destroy')->name('makul.destroy');
-Route::get('makulTerhapus-restore/{id}', 'MakulController@terhapusRestore')->name('makulTerhapus.restore');
+// Route::get('makulTerhapus-restore/{id}', 'MakulController@terhapusRestore')->name('makulTerhapus.restore');
 
 
 //fakultas
@@ -70,8 +70,8 @@ Route::get('fakultas-store/{input}', 'FakultasController@store')->name('fakultas
 Route::get('fakultas-update/{id}/{input}', 'FakultasController@update')->name('fakultas.update');
 Route::get('fakultas-delete/{id}', 'FakultasController@destroy')->name('fakultas.destroy');
 
-Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
-Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
+// Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
+// Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
 
 //login
 Route::get('login.index', 'LoginController@index')->name('login.index');

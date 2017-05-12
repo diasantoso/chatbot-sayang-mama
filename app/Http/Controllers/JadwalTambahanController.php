@@ -11,21 +11,19 @@ use Carbon\Carbon;
 use App\User;
 use App\Prodi;
 use App\Fakultas;
-use App\Jadwal;
+use App\Jadwal_Tambahan;
 use App\Makul;
 use App\Sesi;
 
-class JadwalController extends Controller
+class JadwalTambahanController extends Controller
 {
   public function index() {
     $userId = Auth::user()->id;
     $user = User::find($userId);
 
-    $semuaJadwal = $user->jadwal;
+    $semuaJadwalTambahan = $user->jadwalTambahan;
 
-    return view("front.jadwal.index", compact(
-      'semuaJadwal'
-    ));
+    return view("front.jadwalTambahan.index", compact('semuaJadwalTambahan'));
   }
 
   public function checkJadwal($sesiID) {
@@ -40,58 +38,55 @@ class JadwalController extends Controller
   }
 
   public function store(Request $request) {
-    $jadwal_data = $request->except("_token");
+    $jadwalTambahan_data = $request->except("_token");
 
     $this->validate($request, [
-        'sesi_prodi_id' => 'required',
+        'nama' => 'required',
         'makul_id' => 'required',
         'keyword' => 'required',
-        'kelas' => 'required',
-        'ruangan' => 'required',
+        'type' => 'required',
     ]);
 
     DB::beginTransaction();
 
     try{
-      $jadwal_data['created_by'] = Auth::user()->id;
-      $jadwal_data['user_id'] = Auth::user()->id;
+      $jadwalTambahan_data['created_by'] = Auth::user()->id;
+      $jadwalTambahan_data['user_id'] = Auth::user()->id;
 
-      Jadwal::create($jadwal_data);
+      Jadwal_Tambahan::create($jadwalTambahan_data);
 
       DB::commit();
 
       alert()->success('Data berhasil di tambahkan', 'Tambah Data Berhasil!');
-      return redirect()->route('jadwal.index');
+      return redirect()->route('jadwalTambahan.index');
     }catch(\Exception $e){
         DB::rollback();
-
         throw $e;
     }
   }
 
   public function update(Request $request, $id) {
-    $jadwal_data = $request->except("_token");
+    $jadwalTambahan_data = $request->except("_token");
 
     $this->validate($request, [
-        'sesi_prodi_id' => 'required',
+        'nama' => 'required',
         'makul_id' => 'required',
         'keyword' => 'required',
-        'kelas' => 'required',
-        'ruangan' => 'required',
+        'type' => 'required',
     ]);
 
-    $jadwal = Jadwal::find($id);
+    $jadwalTambahan = Jadwal_Tambahan::find($id);
 
     DB::beginTransaction();
 
     try{
       $jadwal_data['updated_by'] = Auth::User()->id;
-      $jadwal->update($jadwal_data);
+      $jadwal->update($jadwalTambahan_data);
 
       DB::commit();
 
       alert()->success('Data berhasil di ubah', 'Ubah Data Berhasil!');
-      return redirect()->route('jadwal.index');
+      return redirect()->route('jadwalTambahan.index');
     }catch(\Exception $e){
         DB::rollback();
         throw $e;
@@ -102,15 +97,15 @@ class JadwalController extends Controller
     DB::beginTransaction();
 
     try{
-      $jadwal = Jadwal::find($id);
-      $jadwal_data['deleted_at'] = Carbon::now();
-      $jadwal_data['deleted_by'] = Auth::User()->id;
-      $jadwal->update($jadwal_data);
+      $jadwalTambahan = Jadwal_Tambahan::find($id);
+      $jadwalTambahan_data['deleted_at'] = Carbon::now();
+      $jadwalTambahan_data['deleted_by'] = Auth::User()->id;
+      $jadwalTambahan->update($jadwalTambahan_data);
 
       DB::commit();
 
       alert()->success('Data berhasil di hapus', 'Hapus Data Berhasil!');
-      return redirect()->route('jadwal.index');
+      return redirect()->route('jadwalTambahan.index');
     }catch(\Exception $e){
         DB::rollback();
         throw $e;

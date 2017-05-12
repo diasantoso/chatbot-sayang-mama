@@ -8,7 +8,7 @@ class Jadwal_Tambahan extends Model
 {
     protected $table = 'jadwal_tambahan';
     protected $fillable = [
-        'id','makul_id','name','deskripsi','waktu_mulai','waktu_selesai','type','created_at','updated_at','deleted_at',
+        'id','makul_id','name','deskripsi','waktu_mulai','waktu_selesai','type', 'keyword','created_at','updated_at','deleted_at',
             'created_by',
             'updated_by',
             'deleted_by',

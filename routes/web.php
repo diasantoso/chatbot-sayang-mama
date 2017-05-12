@@ -64,3 +64,14 @@ Route::get('fakultas-delete/{id}', 'FakultasController@destroy')->name('fakultas
 
 Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
 Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
+
+
+//jadwal
+
+Route::get('jadwal-index', 'JadwalController@index')->name('jadwal.index');
+Route::get('jadwal-create', 'JadwalController@create')->name('jadwal.create');
+Route::post('jadwal-store', 'JadwalController@store')->name('jadwal.store');
+Route::get('jadwal-edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
+Route::patch('jadwal-update/{id}', 'JadwalController@update')->name('jadwal.update');
+Route::get('jadwal-delete/{id}', 'JadwalController@destroy')->name('jadwal.destroy');
+Route::get('jadwalTerhapus-restore/{id}', 'JadwalController@terhapusRestore')->name('jadwalTerhapus.restore');

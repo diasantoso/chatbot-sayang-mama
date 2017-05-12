@@ -14,6 +14,10 @@ class Jadwal_Tambahan extends Model
             'deleted_by',
     ];
 
+    public function user() {
+      return $this->belongsTo('App\User');
+    }
+
     public function makul() {
       $this->belongsTo('App\Makul', 'makul_id');
     }

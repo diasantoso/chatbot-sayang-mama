@@ -24,7 +24,7 @@
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                         <!--  <!-------------------------------------------------------------------ARTIKEL INDEX---------------------------> -->
+                         <!--  <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
                               <h2> Tabel MataKuliah <small>Daftar mata kuliah yang telah dimasukkan</small></h2>
@@ -38,6 +38,10 @@
                                 <thead>
                                   <tr>
                                     <th align="center">Nama Mata Kuliah</th>
+                                    <th align="center">Dibuat Pada</th>
+                                    <th align="center">Dibuat Oleh</th>
+                                    <th align="center">Diupdate Pada</th>
+                                    <th align="center">Diupdate Oleh</th>
                                     <th align="center">Aksi</th>
                                   </tr>
                                 </thead>
@@ -46,6 +50,10 @@
                                   @if( $semuaMakul->deleted_at == NULL)
                                   <tr>
                                     <td valign="middle">{{ $semuaMakul->nama }}</td>
+                                    <td valign="middle">{{ $semuaMakul->created_at }}</td>
+                                    <td valign="middle">{{ $semuaMakul->createdBy->fullname }}</td>
+                                    <td valign="middle">{{ $semuaMakul->updated_at }}</td>
+                                    <td valign="middle">{{ $semuaMakul->updatedBy->fullname }}</td>
                                     <td valign="middle">
                                       <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
                                       data-id="{{ $semuaMakul->id }}"

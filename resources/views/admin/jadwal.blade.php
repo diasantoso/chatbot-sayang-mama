@@ -67,6 +67,7 @@
                                       data-keyword="{{$jadwal->keyword}}"
                                       data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
                                     
+
                                     </td>
 
                                   </tr>
@@ -121,7 +122,7 @@
             <div class="col-sm-8">
               <select class="select2_single form-control" required="" name="sesi_mulai">
                   @foreach($semuaSesi as $sesi)
-                    @if($makul->deleted_at == NULL)
+                    @if($sesi->deleted_at == NULL)
                       <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
@@ -133,7 +134,7 @@
             <div class="col-sm-8">
               <select class="select2_single form-control" required="" name="sesi_selesai">
                   @foreach($semuaSesi as $sesi)
-                    @if($makul->deleted_at == NULL)
+                    @if($sesi->deleted_at == NULL)
                       <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
@@ -157,6 +158,15 @@
             <div class="col-sm-8">
               <input type="text" name="keyword" required="required" class="form-control" style="width:300px;"/>
             </div>
+          </div>
+
+
+
+           <div class="form-group">
+                          <label class="col-sm-3 control-label">Foto :</label>
+                        <div class="col-sm-8">
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                        </div>
           </div>
 					<div class="form-group modal-footer">
 						<button type="submit" class="btn btn-primary">Simpan</button>

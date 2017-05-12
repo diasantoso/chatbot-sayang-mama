@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="{{ asset('images/logo_tabbrowser.png') }}" type="image" sizes="16x16"> <!------------------------------------------ ICON-------------->
 
     <title>ChatBot Reminder</title>
 
@@ -62,7 +63,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Pengingat untuk Agenda Perkuliahan</h1>
+                <h1 id="homeHeading">Pengingat untuk Agenda Perkuliahan dengan LINE MESSENGER</h1>
                 <hr>
                 <p>Dikembangkan oleh Tim Sayang Mama, UAJY 2017</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Cek Lebih Lanjut</a>
@@ -76,7 +77,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Apa itu ChatBot Reminder?</h2>
                     <hr class="light">
-                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan, meliputi jadwal, kuis dan tugas kuliah.<br/><br/><br/></p>
+                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan meliputi jadwal, kuis dan tugas kuliah dengan memanfaatkan teknologi LINE MESSENGER<br/><br/><br/></p>
                     <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Memulai!</a>
                 </div>
             </div>
@@ -112,7 +113,7 @@
                     <div class="service-box">
                         <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
                         <h3>Masuk di Line</h3>
-                        <p class="text-muted">Setelah menambah data jadwal, kuis atau tugas, kamu harus login di OA line milik ChatBot Reminder untuk mendapatkan chat pengingat dari Bot-nya</p>
+                        <p class="text-muted">Setelah menambah data jadwal, kuis atau tugas, kamu harus login di OA line milik ChatBot Reminder untuk mendapatkan chat pengingat dari Bot-nya (id line OA : @nhr5845b)</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">

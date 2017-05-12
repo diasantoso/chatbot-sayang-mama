@@ -43,7 +43,8 @@ Route::get('User.aktifkan/{id}', 'UserController@aktifkan')->name('user.aktifkan
 
 Route::get('Prodi', 'ProdiController@index')->name('prodi.index');
 Route::post('Prodi.store', 'ProdiController@store')->name('prodi.store');
-Route::patch('Prodi.update', 'ProdiController@update')->name('prodi.update');
+Route::get('Prodi-edit/{id}', 'ProdiController@edit')->name('prodi.edit');
+Route::patch('Prodi.update/{id}', 'ProdiController@update')->name('prodi.update');
 Route::get('Prodi.delete/{id}', 'ProdiController@destroy')->name('prodi.delete');
 
 //sesi

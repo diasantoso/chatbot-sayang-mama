@@ -19,6 +19,12 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content11" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><span class="fa fa-archive"></span> Data Program Studi</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><span class="fa fa-trash"></span> Data Program Studi Sudah Dihapus</a>
+                        </li>
+                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
@@ -72,6 +78,45 @@
                           </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
+
+
+                          <!-------------------------------------------------------------------ARTIKEL TERHAPUS INDEX--------------------------->
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2> Tabel Program Studi Terhapus <small>Daftar program studi yang telah dihapus</small></h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table id="tabel-prodiTerhapus" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th align="center">Program Studi</th>
+                                    <th align="center">Fakultas</th>
+                                    <th align="center">Dihapus Pada</th>
+                                    <th align="center">Dihapus oleh</th>
+                                    <th align="center">Aksi</th>
+                                  </tr>
+                                </thead>
+
+
+                                <tbody>
+                                  @foreach($prodi as $prodis)
+                                  @if( $prodis->deleted_at != NULL)
+                                  <tr>
+                                    <td valign="middle" >{{ $prodis->nama }}</td>
+                                    <td valign="middle" >{{ $prodis->fakultas->nama }}</td>
+                                    <td align="center" valign="middle">{{ $prodis->deleted_at }}</td>
+                                    <td valign="middle">{{ $prodis->deletedBy->fullname }}</td>
+                                    <td valign="middle">
+                                      <a id="restore-btn" class="btn btn-warning btn-xs" customParam="{{ route('prodiTerhapus.restore', $prodis->id) }}" href="#"><span class="fa fa-retweet"></span> Kembalikan Data</a>
+                                    </td>
+                                  </tr>
+                                  @endif
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
 
                         </div>
                       </div>
@@ -134,7 +179,51 @@
 @endsection
 
 @section('custom_script')
+<script>
+    var deleter = {
 
+        linkSelector : "a#restore-btn",
+
+        init: function() {
+            $(this.linkSelector).on('click', {self:this}, this.handleClick);
+        },
+
+        handleClick: function(event) {
+            event.preventDefault();
+
+            var self = event.data.self;
+            var link = $(this);
+
+        swal({
+            title: 'Apakah anda yakin?',
+            text: "Data akan dipulihkan ke kondisi sebelum dihapus!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Restore',
+            cancelButtonText: 'Batal',
+            confirmButtonClass: 'btn btn-success btn-lg',
+            cancelButtonClass: 'btn btn-danger btn-lg',
+            buttonsStyling: false
+          }).then(function () {
+              window.location = link.attr('customParam');
+          }, function (dismiss) {
+            // dismiss can be 'cancel', 'overlay',
+            // 'close', and 'timer'
+            if (dismiss === 'cancel') {
+              swal(
+                'Batal',
+                'Data batal untuk dipulihkan',
+                'error'
+              )
+            }
+          })
+        },
+    };
+
+    deleter.init();
+</script>
 <!-- Script SweetAlert Konfirmasi Hapus -->
 <script>
     var deleter = {
@@ -188,7 +277,9 @@
     $('#tabel-user').dataTable();
 </script>
 <!-- /Datatables Artikel Index -->
-
+<script>
+    $('#tabel-prodiTerhapus').dataTable();
+</script>
 <script type="text/javascript">
   $(document).on( "click", '.edit_button',function(e) {
 

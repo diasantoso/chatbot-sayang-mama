@@ -47,6 +47,10 @@ Route::get('Prodi-edit/{id}', 'ProdiController@edit')->name('prodi.edit');
 Route::patch('Prodi.update/{id}', 'ProdiController@update')->name('prodi.update');
 Route::get('Prodi.delete/{id}', 'ProdiController@destroy')->name('prodi.delete');
 
+
+  Route::get('prodiTerhapus-restore/{id}', 'ProdiController@terhapusRestore')->name('prodiTerhapus.restore');
+  Route::get('prodiTerhapus-destroy/{id}', 'ProdiController@terhapusDestroy')->name('prodiTerhapus.destroy');
+
 //sesi
 
 Route::get('sesi-index', 'SesiController@index')->name('sesi.index');

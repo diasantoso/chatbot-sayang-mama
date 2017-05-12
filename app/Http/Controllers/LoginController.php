@@ -43,8 +43,17 @@ class LoginController extends Controller
         // attempt to do the login
            if (Auth::attempt(['email' => $email, 'password' => $password],true))
             {
-
-                return redirect('admindashboard');
+                if(Auth::User()->role=='Administrator')
+                {
+                     return redirect('admindashboard');
+                }
+                else
+                {
+                    return redirect('jadwal-index');
+                }
+               
+                   
+           
             }
             else {
 

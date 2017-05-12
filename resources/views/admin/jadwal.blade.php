@@ -105,23 +105,28 @@
             </div>
           </div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Sesi Mulai:</label>
-						<select class="select2_single form-control" required="" name="sesi_mulai">
+						 <label class="col-sm-3 control-label">Makul :</label>
+            <div class="col-sm-8">
+              <select class="select2_single form-control" required="" name="sesi_mulai">
                   @foreach($semuaSesi as $sesi)
                     @if($makul->deleted_at == NULL)
-                      <option value="{{ $sesi->id }}">{{ $sesi->sesi}}</option>
+                      <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
                 </select>
+            </div>
 					</div>
 					<div class="form-group">
-						  <select class="select2_single form-control" required="" name="sesi_sesi">
+					 <label class="col-sm-3 control-label">Makul :</label>
+            <div class="col-sm-8">
+              <select class="select2_single form-control" required="" name="sesi_selesai">
                   @foreach($semuaSesi as $sesi)
                     @if($makul->deleted_at == NULL)
-                      <option value="{{ $sesi->id }}">{{ $sesi->sesi}}</option>
+                      <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
                 </select>
+            </div>
 					</div>
             <div class="form-group">
             <label class="col-sm-3 control-label">Kelas :</label>

@@ -25,7 +25,7 @@ Route::get('dashboard.mahasiswa', function () {
     })->name('dashboard.mahasiswa');
 
 //LINE Bot
-Route::post('line-updates', 'LineBotController@updates')->name('linebot.updates');
+Route::post('line-updates', 'BotController@updates')->name('linebot.updates');
 
 //user
 Route::get('User', 'UserController@index')->name('user.index');

@@ -385,7 +385,7 @@ class BotController extends Controller
       {
         if($event['message']['type'] == 'text')
         {
-          $registerUrl = "http://ditoraharjo.co/chatbot/register";
+          $registerUrl = "http://ditoraharjo.co/chatbot";
           // $registerUrl = "UNDER MAINTENANCE";
           $userId = $event['source']['userId'];
           $replyToken = $event['replyToken'];
@@ -496,8 +496,8 @@ class BotController extends Controller
   }
 
   public function chatLogout($userId) {
-    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->get();
-    $chatLog = Chat_Log_line::find($check);
+    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
+    $chatLog = Chat_Log_line::find($check->id);
 
     $user = $chatLog->user;
 
@@ -584,18 +584,18 @@ class BotController extends Controller
   public function checkPassword($userId, $email, $password) {
     $check = User::select('id')->where([
       ['email', 'LIKE', $email]
-      ])->get();
+      ])->first();
     $checkCount = $check->count();
 
     if($checkCount != 0) {
-      $user_data = User::find($check);
+      $user_data = User::find($check->id);
 
       if(Hash::check($password, $user_data->password) ) {
-        $checkChatLog = Chat_Log_line::select('id')->where('chat_id', $userId)->get();
+        $checkChatLog = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
         $checkCountChatLog = $checkChatLog->count();
 
         if($checkCountChatLog == 1) {
-          $chat_log_data = Chat_Log_line::find($checkChatLog);
+          $chat_log_data = Chat_Log_line::find($checkChatLog->id);
 
           DB::beginTransaction();
 

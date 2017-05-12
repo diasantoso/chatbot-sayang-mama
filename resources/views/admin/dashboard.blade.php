@@ -10,8 +10,8 @@
               </div>
               <div class="count">{{ $totalUser }}</div>
 
-              <h3>Mahasiswa</h3>
-              <p>Total mahasiswa aktif terdaftar.</p>
+              <h3>Admin</h3>
+              <p>Total admin terdaftar.</p>
               </a>
             </div>
           </div>

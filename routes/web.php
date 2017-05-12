@@ -24,7 +24,8 @@ Route::post('User.store', 'UserController@store')->name('user.store');
 Route::post('Admin.store', 'UserController@storeadmin')->name('admin.store');
 Route::patch('User.update', 'PegawaiController@update')->name('user.update');
 Route::get('User.delete/{id}', 'UserController@destroy')->name('user.delete');
-
+Route::post('doLogin', 'UserController@doLogin')->name('doLogin');
+Route::post('doLogout', 'UserController@doLogout')->name('doLogout');
 
 //prodi
 

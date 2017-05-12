@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\User;
+use App\Users;
 use App\Prodi;
 use App\Fakultas;
 use Carbon\Carbon;
+use DB;
+use File;
 class UserController extends Controller
 {
     /**
@@ -18,10 +20,10 @@ class UserController extends Controller
     public function index()
     {
         //
-          $users = User::all();
+          $users = Users::all();
           $prodi = Prodi::all();
           $fakultas = Fakultas::all();
-          return view('user-index', compact('users','fakultas','prodi'));
+          return view('admin.user', compact('users','fakultas','prodi'));
     }
 
     /**
@@ -89,7 +91,7 @@ class UserController extends Controller
     {
 
     
-        $updated_by=Auth::User()->id;
+        $updated_by=Auth::Users()->id;
 
         $user_data = $request->except('_token');
         if($request->hasFile('FOTO')) {
@@ -97,11 +99,11 @@ class UserController extends Controller
             $user_data['FOTO'] = $request->file('FOTO')->getClientOriginalName();
             DB::table('user')
             ->where('id',$user_data['id'])
-            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id;]);
+            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id]);
          return redirect()->route('pegawai.index');
         }
         else {
-       DB::table('user')
+       DB::table('users')
             ->where('id',$user_data['id'])
             ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => $updated_by]);
         }
@@ -121,7 +123,7 @@ class UserController extends Controller
         $deleted_at=Carbon::now();
         $deleted_by=Auth::User()->id;
        
-        DB::table('user')
+        DB::table('users')
             ->where('id',$id)
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
             return redirect()->route('User.index');

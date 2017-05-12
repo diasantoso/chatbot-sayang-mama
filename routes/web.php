@@ -78,3 +78,14 @@ Route::get('login.index', 'LoginController@index')->name('login.index');
 Route::post('doLogin', 'LoginController@doLogin')->name('doLogin');
 Route::post('doLogout', 'LoginController@doLogout')->name('doLogout');
 Route::get('admindashboard', 'LoginController@admindashboard')->name('admindashboard');
+
+
+//jadwal
+
+Route::get('jadwal-index', 'JadwalController@index')->name('jadwal.index');
+Route::get('jadwal-create', 'JadwalController@create')->name('jadwal.create');
+Route::post('jadwal-store', 'JadwalController@store')->name('jadwal.store');
+Route::get('jadwal-edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
+Route::patch('jadwal-update/{id}', 'JadwalController@update')->name('jadwal.update');
+Route::get('jadwal-delete/{id}', 'JadwalController@destroy')->name('jadwal.destroy');
+Route::get('jadwalTerhapus-restore/{id}', 'JadwalController@terhapusRestore')->name('jadwalTerhapus.restore');

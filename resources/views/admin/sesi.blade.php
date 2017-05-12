@@ -31,9 +31,9 @@
                           <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2> Tabel Sesi <small>Daftar sesi yang telah dimasukkan</small></h2>
+                              <h2> Tabel User <small>Daftar sesi yang telah dimasukkan</small></h2>
                               <ul class="nav navbar-right panel_toolbox">
-                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Sesi Baru</a>
+                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah User Baru</a>
                               </ul>
                               <div class="clearfix"></div>
                             </div>
@@ -43,6 +43,7 @@
                                   <tr>
                                     <th align="center">Hari</th>
                                     <th align="center">Sesi</th>
+                                    <th align="center">Waktu</th>
                                     <th align="center">Dibuat pada</th>
                                     <th align="center">Dibuat oleh</th>
                                     <th align="center">Diupdate Pada</th>
@@ -56,6 +57,7 @@
                                   <tr>
                                     <td valign="middle" >{{ $sesi->hari }}</td>
                                     <td valign="middle" >{{ $sesi->sesi }}</td>
+                                    <td valign="middle" >{{ $sesi->waktu }}</td>
                                     <td align="center" valign="middle">{{ $sesi->created_at }}</td>
                                     <td valign="middle">{{ $sesi->createdBy->fullname }}</td>
                                     <td align="center" valign="middle">{{ $sesi->updated_at }}</td>
@@ -66,13 +68,13 @@
                                     @endif
 
                                     <td valign="middle">
-                                      <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
+                                      <!-- <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
                                       data-id="{{ $sesi->id }}"
                                       data-hari="{{ $sesi->hari }}"
                                       data-sesi="{{ $sesi->sesi }}"
-                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Ubah</a>
+                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a> -->
 
-                                      <!-- <a id="edit-btn" class="btn btn-warning btn-xs" href="{{ route('sesi.edit', $sesi->id) }}"><span class="fa fa-pencil-square-o"></span> Edit</a> -->
+                                      <a id="edit-btn" class="btn btn-warning btn-xs" href="{{ route('sesi.edit', $sesi->id) }}"><span class="fa fa-pencil-square-o"></span> Edit</a>
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('sesi.destroy', $sesi->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
@@ -101,6 +103,7 @@
                                   <tr>
                                     <th align="center">Hari</th>
                                     <th align="center">Sesi</th>
+                                    <th align="center">Waktu</th>
                                     <th align="center">Dihapus Pada</th>
                                     <th align="center">Dihapus oleh</th>
                                     <th align="center">Aksi</th>
@@ -114,6 +117,7 @@
                                   <tr>
                                     <td valign="middle" >{{ $sesi->hari }}</td>
                                     <td valign="middle" >{{ $sesi->sesi }}</td>
+                                    <td valign="middle" >{{ $sesi->waktu }}</td>
                                     <td align="center" valign="middle">{{ $sesi->deleted_at }}</td>
                                     <td valign="middle">{{ $sesi->deletedBy->fullname }}</td>
                                     <td valign="middle">
@@ -158,7 +162,7 @@
         <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Sesi Baru</h4>
+          <h4 class="modal-title">Add New Sesi</h4>
         </div>
         <div class="modal-body">
           <form name="formCreateUser" action="{{ route('sesi.store') }}" class="form-horizontal" method="post">
@@ -188,6 +192,28 @@
               </select>
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Waktu
+            </label>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+              <select class="select2_singleJam form-control" required="" name="jam">
+                <option></option>
+                @for($counter = 00;$counter<=23;$counter++)
+                  <option value="{{ $counter }}">{{ $counter }}</option>
+                @endfor
+              </select>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+              <select class="select2_singleMenit form-control" required="" name="menit">
+                <option></option>
+                @for($counter = 00;$counter<=59;$counter++)
+                  <option value="{{ $counter }}">{{ $counter }}</option>
+                @endfor
+              </select>
+            </div>
+          </div>
+
           <div class="form-group modal-footer">
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
@@ -198,50 +224,7 @@
       </div>
       </div>
 
-      <!-- Modal Update -->
-      <div class="modal fade" id="myModalUpdate" role="dialog">
-      <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Ubah Sesi</h4>
-      </div>
-      <div class="modal-body">
-        <form name="formUpdateUser" action="{{ route('sesi.update') }}" class="form-horizontal" method="post">
-          {{ csrf_field() }}
-        <input type="hidden" name="_method" value="PATCH">
-        <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Hari :</label>
-          <div class="col-sm-8">
-            <input type="text" name="hari" class="form-control hari" style="width:200px;"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Sesi :</label>
-          <div class="col-sm-8">
-            <!-- <input type="text" name="sesi" class="form-control sesi" style="width:300px;"/> -->
-            <select class="select2_singleSesi form-control" required="" name="sesi">
-                <option value="{{ $sesi->sesi }}">{{ $sesi->sesi }}</option>
-                @for($counter = 1;$counter<=5;$counter++)
-                  @if($counter != $sesi->sesi)
-                  <option value="{{ $counter }}">{{ $counter }}</option>
-                  @endif
-                @endfor
-              </select>
-          </div>
-        </div>
-        <div class="form-group modal-footer">
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-        </form>
-      </div>
-      </div>
-
-      </div>
-      </div>
+      
       <!-- /page content -->
 
 @endsection
@@ -311,6 +294,10 @@
         $(".hari").val(hari);
         var sesi = $(this).data('sesi');
         $(".sesi").val(sesi);
+        var jam =$(this).data('jam');
+        $(".jam").val(sesi);
+        var menit =$(this).data('menit');
+        $(".menit").val(menit);
 
     });
     </script>
@@ -325,6 +312,14 @@
           placeholder: "Pilih sesi",
           allowClear: true
         });
+        $(".select2_singleJam").select2({
+          placeholder: "Jam",
+          allowClear: true
+          });
+        $(".select2_singleMenit").select2({
+          placeholder: "Menit",
+          allowClear: true
+      });
       });
   </script>
 

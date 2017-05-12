@@ -58,38 +58,45 @@ class SesiController extends Controller
         }
       }
 
-    public function store(Request $request)
-    {
-        //
-        $sesi_data = $request->except('_token');
+      public function store(Request $request)
+      {
+          //
+          $sesi_data = $request->except('_token');
 
-        $this->validate($request, [
-            'sesi' => 'required',
-            'hari' => 'required',
-        ]);
+          $this->validate($request, [
+              'sesi' => 'required',
+              'hari' => 'required',
+              'jam' => 'required',
+              'menit' => 'required',
 
-        if($this->checkDuplicate($sesi_data['sesi'], $sesi_data['hari']) == true ) {
-          $sesi_data['created_by'] = Auth::user()->id;
+          ]);
 
-          DB::beginTransaction();
+          if($this->checkDuplicate($sesi_data['sesi'], $sesi_data['hari']) == true ) {
+            $sesi_data['created_by'] = Auth::user()->id;
+            $waktu = $sesi_data['jam'].":".$sesi_data['menit'].":00";
+            $sesi_data['waktu']= $waktu;
+            DB::beginTransaction();
 
-          try{
-            Sesi::create($sesi_data);
+            try{
+              Sesi::create($sesi_data);
 
-            DB::commit();
+              DB::commit();
 
-            alert()->success('Data berhasil di tambahkan', 'Tambah Data Berhasil!');
+              alert()->success('Data berhasil di tambahkan', 'Tambah Data Berhasil!');
+              return redirect()->route('sesi.index');
+            }catch(\Exception $e){
+                DB::rollback();
+
+                throw $e;
+            }
+          } else {
+            alert()->error('Maaf sesi sudah ada', 'Sesi Sudah Ada!');
             return redirect()->route('sesi.index');
-          }catch(\Exception $e){
-              DB::rollback();
-
-              throw $e;
           }
-        } else {
-          alert()->error('Maaf sesi sudah ada', 'Sesi Sudah Ada!');
-          return redirect()->route('sesi.index');
-        }
-    }
+      }
+
+
+
 
     /**
      * Display the specified resource.
@@ -111,8 +118,23 @@ class SesiController extends Controller
     public function edit($id)
     {
         //
-        $sesi = Makul::find($id);
-        return view('front.sesi.edit', compact('sesi'));
+        $sesi = Sesi::find($id);
+        $jamBaru = substr($sesi->waktu,0,2);
+        $menitBaru = substr($sesi->waktu,3,2);
+
+        if(substr($jamBaru,0,1) == 0) {
+          $jam = substr($jamBaru,1,1);
+        } else {
+          $jam = $jamBaru;
+        }
+
+        if(substr($menitBaru,0,1) == 0) {
+          $menit = substr($jamBaru,1,1);
+        } else {
+          $menit = $menitBaru;
+        }
+
+        return view('admin.editsesi', compact('sesi', 'jam', 'menit'));
     }
 
     /**
@@ -122,7 +144,7 @@ class SesiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         //
         $sesi_data = $request->except('_token');
@@ -130,15 +152,19 @@ class SesiController extends Controller
         $this->validate($request, [
             'sesi' => 'required',
             'hari' => 'required',
+            'jam' =>'required',
+
         ]);
 
         if($this->checkDuplicate($sesi_data['sesi'], $sesi_data['hari']) == true ) {
           $sesi_data['updated_by'] = Auth::user()->id;
+          $waktu = $sesi_data['jam'].":".$sesi_data['menit'].":00";
+          $sesi_data['waktu']= $waktu;
 
           DB::beginTransaction();
 
           try{
-              $sesi = Sesi::find($sesi_data['id']);
+              $sesi = Sesi::find($id);
               $sesi->update($sesi_data);
 
               DB::commit();
@@ -207,6 +233,6 @@ class SesiController extends Controller
           throw $e;
       }
     }
-    
+
 
 }

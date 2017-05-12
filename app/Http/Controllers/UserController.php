@@ -48,8 +48,9 @@ class UserController extends Controller
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
             $request->file('image')->move('uploads/ProfilePicture/', $request->file('image')->getClientOriginalName());
-        }
             $user_data['image'] = $request->file('image')->getClientOriginalName();
+        }
+            $user_data['password'] = bcrypt($user_data['password']);
             $user_data['role']='Mahasiswa';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
@@ -68,6 +69,7 @@ class UserController extends Controller
            
              $user_data['role']='Administrator';
             $user_data['registerdate']=Carbon::now();
+            $user_data['password'] = bcrypt($user_data['password']);
              User::create($user_data);
              return redirect()->route('user.index');
     }

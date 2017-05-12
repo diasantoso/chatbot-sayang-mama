@@ -16,6 +16,12 @@ class LoginController extends Controller
         $semuaFakultas = Fakultas::all();
         return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
     }
+     public function register()
+    {
+        $semuaProdi = Prodi::all();
+        $semuaFakultas = Fakultas::all();
+        return view('loginregister.register', compact('users','semuaFakultas','semuaProdi'));
+    }
      public function admindashboard()
     {
     	  $totalUser = User::all()->where('deleted_at','=' ,NULL)->count();

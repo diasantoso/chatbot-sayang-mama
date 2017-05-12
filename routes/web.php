@@ -36,6 +36,7 @@ Route::patch('User.updateadmin', 'UserController@updateadmin')->name('user.updat
 Route::get('User.delete/{id}', 'UserController@destroy')->name('user.delete');
 
 
+
 //prodi
 
 Route::get('Prodi', 'ProdiController@index')->name('prodi.index');
@@ -77,6 +78,7 @@ Route::get('fakultas-delete/{id}', 'FakultasController@destroy')->name('fakultas
 
 //login
 Route::get('login.index', 'LoginController@index')->name('login.index');
+Route::get('register.index', 'LoginController@register')->name('login.register');
 Route::post('doLogin', 'LoginController@doLogin')->name('doLogin');
 Route::post('doLogout', 'LoginController@doLogout')->name('doLogout');
 Route::get('admindashboard', 'LoginController@admindashboard')->name('admindashboard');
@@ -101,3 +103,9 @@ Route::get('jadwalTambahan-edit/{id}', 'JadwalTambahanController@edit')->name('j
 Route::patch('jadwalTambahan-update/{id}', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
 Route::get('jadwalTambahan-delete/{id}', 'JadwalTambahanController@destroy')->name('jadwalTambahan.destroy');
 Route::get('jadwalTambahanTerhapus-restore/{id}', 'JadwalTambahanController@terhapusRestore')->name('jadwalTambahanTerhapus.restore');
+
+//Profil
+Route::get('Profile-index', 'ProfileController@index')->name('Profile.index');
+Route::patch('Profile-update/{id}', 'ProfileController@update')->name('Profile.update');
+Route::patch('Profile-updatefoto/{id}', 'ProfileController@updateFoto')->name('Profile.updatefoto');
+Route::patch('Profile-updatepass/{id}', 'ProfileController@updatePass')->name('Profile.updatepass');

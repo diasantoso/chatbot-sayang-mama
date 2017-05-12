@@ -453,7 +453,7 @@ class BotController extends Controller
           } else {
             if (($check = strpos($textReceived, "-")) !== FALSE) {
               $email = strtok($textReceived, '-');
-              $password = substr($textReceived, strpos($textReceived, "-") );
+              $password = substr($textReceived, strpos($textReceived, "-") +1);
 
               if($this->checkEmail($email) == true) {
                 if($this->checkPassword($userId, $email, $password) == "true" ) {

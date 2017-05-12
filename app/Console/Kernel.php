@@ -26,21 +26,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
-      $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
-
-      $userId = "Ud6c98299e8a444e219b9479efe772f52";
-
-      $textSend = "coba ping cron jobs - ".Carbon::now();
-
-      $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
-      $result = $bot->pushMessage($userId, $textMessageBuilder);
-
-      return $result->getHTTPStatus() . ' ' . $result->getRawBody();
-        // $schedule->command('inspire')
-        //          ->hourly();
-        $url = "http://ditoraharjo.co/chatbot/test-cron";
-        $schedule->command('line:sendReminder')->everyMinute()->pingBefore($url)->thenPing($url);
+      // $schedule->command('inspire')
+      //          ->hourly();
+      $schedule->command('line:sendReminder')->everyMinute();
     }
 
     /**

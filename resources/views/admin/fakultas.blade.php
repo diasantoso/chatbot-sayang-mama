@@ -22,8 +22,7 @@
                       <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_content11" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><span class="fa fa-archive"></span> Data Fakultas</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><span class="fa fa-trash"></span> Data Fakultas Sudah Dihapus</a>
-                        </li>
+                      
                       </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
@@ -83,7 +82,7 @@
                       </div>
                     </div>
 
-                  </div>
+
 
 
               </div>

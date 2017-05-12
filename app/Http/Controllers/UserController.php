@@ -47,7 +47,7 @@ class UserController extends Controller
         
               $user_data = $request->except('_token');
         if($request->hasFile('image')) {
-            $request->file('image')->move('image', $request->file('image')->getClientOriginalName());   
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());   
         }
           $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
             $user_data['role']='Mahasiswa';
@@ -60,7 +60,7 @@ class UserController extends Controller
        
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
-            $request->file('image')->move('image', $request->file('image')->getClientOriginalName());   
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());   
         }
           $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
             $user_data['role']='Administrator';
@@ -107,7 +107,7 @@ class UserController extends Controller
 
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
-            $request->file('image')->move('image', $request->file('image')->getClientOriginalName());
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());
             $user_data['image'] = $request->file('image')->getClientOriginalName();
             DB::table('user')
             ->where('id',$user_data['id'])

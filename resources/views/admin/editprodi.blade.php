@@ -41,7 +41,7 @@
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">Program Studi</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" name="nama" class="form-control" placeholder="Nama Program Studi" required="" value="{{ $prodi->nama }}">
+                <input type="text" required="required" name="nama" class="form-control" placeholder="Nama Program Studi" required="" value="{{ $prodi->nama }}">
               </div>
             </div>
 

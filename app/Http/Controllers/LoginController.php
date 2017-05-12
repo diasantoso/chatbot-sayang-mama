@@ -9,6 +9,7 @@ use App\Prodi;
 use App\Fakultas;
 use App\Sesi;
 use App\Makul;
+use DB;
 class LoginController extends Controller
 {
      public function index()
@@ -57,7 +58,9 @@ class LoginController extends Controller
             }
             else {
 
-               echo "fail";
+
+               alert()->error('Login Gagal', 'username atau password salah');
+               return redirect('login.index');
 
             }
 

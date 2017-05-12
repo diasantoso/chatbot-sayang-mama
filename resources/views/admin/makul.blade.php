@@ -146,7 +146,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Nama Mata Kuliah :</label>
             <div class="col-sm-8">
-              <input type="text" name="nama" class="form-control nama" style="width:200px;"/>
+              <input type="text" name="nama" required="required" class="form-control nama" style="width:200px;"/>
             </div>
           </div>
           <div class="form-group modal-footer">
@@ -177,7 +177,7 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">Nama Mata Kuliah :</label>
           <div class="col-sm-8">
-            <input type="text" name="nama" class="form-control nama" style="width:200px;"/>
+            <input type="text" required="required" name="nama" class="form-control nama" style="width:200px;"/>
           </div>
         </div>
         <div class="form-group modal-footer">

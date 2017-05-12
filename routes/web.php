@@ -99,7 +99,6 @@ Route::post('jadwal-store', 'JadwalController@store')->name('jadwal.store');
 Route::get('jadwal-edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
 Route::patch('jadwal-update/{id}', 'JadwalController@update')->name('jadwal.update');
 Route::get('jadwal-delete/{id}', 'JadwalController@destroy')->name('jadwal.destroy');
-Route::get('jadwalTerhapus-restore/{id}', 'JadwalController@terhapusRestore')->name('jadwalTerhapus.restore');
 
 //jadwalTambahan
 
@@ -109,7 +108,6 @@ Route::post('jadwalTambahan-store', 'JadwalTambahanController@store')->name('jad
 Route::get('jadwalTambahan-edit/{id}', 'JadwalTambahanController@edit')->name('jadwalTambahan.edit');
 Route::patch('jadwalTambahan-update/{id}', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
 Route::get('jadwalTambahan-delete/{id}', 'JadwalTambahanController@destroy')->name('jadwalTambahan.destroy');
-Route::get('jadwalTambahanTerhapus-restore/{id}', 'JadwalTambahanController@terhapusRestore')->name('jadwalTambahanTerhapus.restore');
 
 //Profil
 Route::get('Profile-index', 'ProfileController@index')->name('Profile.index');

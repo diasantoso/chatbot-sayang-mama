@@ -22,8 +22,9 @@ class JadwalTambahanController extends Controller
     $user = User::find($userId);
 
     $semuaJadwalTambahan = $user->jadwalTambahan;
+    $semuaMakul=Makul::all();
 
-    return view("front.jadwalTambahan.index", compact('semuaJadwalTambahan'));
+    return view("admin.kuis", compact('semuaJadwalTambahan','semuaMakul'));
   }
 
   public function checkJadwal($sesiID) {
@@ -51,7 +52,7 @@ class JadwalTambahanController extends Controller
 
     try{
       $jadwalTambahan_data['created_by'] = Auth::user()->id;
-      $jadwalTambahan_data['user_id'] = Auth::user()->id;
+      $jadwalTambahan_data['user_id'] =  Auth::user()->id;
 
       Jadwal_Tambahan::create($jadwalTambahan_data);
 

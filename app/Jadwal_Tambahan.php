@@ -19,16 +19,16 @@ class Jadwal_Tambahan extends Model
     }
 
     public function makul() {
-      $this->belongsTo('App\Makul', 'makul_id');
+      return $this->belongsTo('App\Makul', 'makul_id');
     }
 
     public function createdBy() {
-      $this->belongsTo('App\User', 'created_by');
+      return $this->belongsTo('App\User', 'created_by');
     }
     public function updatedBy() {
-      $this->belongsTo('App\User', 'updated_by');
+      return $this->belongsTo('App\User', 'updated_by');
     }
     public function deletedBy() {
-      $this->belongsTo('App\User', 'deleted_by');
+      return $this->belongsTo('App\User', 'deleted_by');
     }
 }

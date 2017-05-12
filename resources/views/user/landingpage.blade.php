@@ -76,7 +76,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Apa itu ChatBot Reminder?</h2>
                     <hr class="light">
-                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan, meliputi jadwal, kuis dan tugas kuliah.</p>
+                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan, meliputi jadwal, kuis dan tugas kuliah.<br/><br/><br/></p>
                     <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Memulai!</a>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
-                        <h3>Masuk</h3>
+                        <h3>Masuk di Website</h3>
                         <p class="text-muted">Setelah mendaftar, kamu dapat masuk ke sistem untuk memasukkan data jadwal, kuis atau tugas kuliah mu.</p>
                     </div>
                 </div>

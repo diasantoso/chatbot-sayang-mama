@@ -35,32 +35,8 @@ class BotController extends Controller
     $email = "ditoparker@gmail.com";
     $password = "1234";
     $userId = "Ud6c98299e8a444e219b9479efe772f52";
-    if (($check = strpos($textReceived, "-")) !== FALSE) {
-      $email = strtok($textReceived, '-');
-      $password = substr($textReceived, strpos($textReceived, "-") +1);
 
-      if($this->checkEmail($email) == true) {
-        if($this->checkPassword($userId, $email, $password)== true ) {
-          $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
-        } else {
-          $textSend = "Maaf email atau password anda salah". PHP_EOL .
-          "atau anda belum terdaftar". PHP_EOL .
-          "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-          "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-        }
-      } else {
-        $textSend = "Maaf email atau password anda salah". PHP_EOL .
-        "atau anda belum terdaftar". PHP_EOL .
-        "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-        "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-      }
-    } else {
-      $textSend = "Maaf anda perlu login terlebih dahulu".PHP_EOL.
-      "silahkan kirimkan chat email dan password yang sudah anda daftarkan di ". PHP_EOL .$registerUrl. PHP_EOL .
-      "dengan format : email-password". PHP_EOL .
-      "contoh: asdf@gmail.com-1234 " . PHP_EOL .
-      "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-    }
+    $password = substr($textReceived, strpos($textReceived, "-") +1);
 
     echo $this->checkPassword($userId, $email, $password);
     // init bot
@@ -477,17 +453,17 @@ class BotController extends Controller
           } else {
             if (($check = strpos($textReceived, "-")) !== FALSE) {
               $email = strtok($textReceived, '-');
-              $password = substr($textReceived, strpos($textReceived, "-") +1);
+              $password = substr($textReceived, strpos($textReceived, "-") );
 
               if($this->checkEmail($email) == true) {
-                if($this->checkPassword($userId, $email, $password) == true ) {
+                if($this->checkPassword($userId, $email, $password) == "true" ) {
                   $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
                 } else {
-                  // $textSend = $this->checkPassword($userId, $email, $password);
-                  $textSend = " Pass Maaf email atau password anda salah". PHP_EOL .
-                  "atau anda belum terdaftar". PHP_EOL .
-                  "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-                  "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+                  $textSend = $this->checkPassword($userId, $email, $password);
+                  // $textSend = " Pass Maaf email atau password anda salah". PHP_EOL .
+                  // "atau anda belum terdaftar". PHP_EOL .
+                  // "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
+                  // "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
                 }
               } else {
                 $textSend = "Email Maaf email atau password anda salah". PHP_EOL .
@@ -641,21 +617,21 @@ class BotController extends Controller
             $chat_log_data->save();
 
             DB::commit();
-            return true;
+
           } catch (\Exception $e) {
             DB::rollback();
             throw $e;
           }
-          // return true;
+          return "true";
 
         } else {
-          return false;
+          return "false";
         }
       } else {
-        return false;
+        return "false2";
       }
     } else {
-      return false;
+      return "false1";
     }
   }
 

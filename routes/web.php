@@ -65,3 +65,7 @@ Route::get('fakultas-delete/{id}', 'FakultasController@destroy')->name('fakultas
 
 Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
 Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
+
+//login
+Route::get('login.index', 'LoginController@index')->name('login.index');
+

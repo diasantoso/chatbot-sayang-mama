@@ -12,8 +12,8 @@ class LoginController extends Controller
 {
      public function index()
     {
-        //
-          
-          return view('admin.user');
+    	  $semuaProdi = Prodi::all();
+          $semuaFakultas = Fakultas::all();
+          return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
     }
 }

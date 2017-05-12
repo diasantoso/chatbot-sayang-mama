@@ -55,7 +55,7 @@
                                     <td valign="middle">Sesi-{{ $jadwal->sesiMulai->sesi }}  ({{ $jadwal->sesiMulai->waktu}})</td>
                                     <td valign="middle">Sesi-{{ $jadwal->sesiSelesai->sesi}} ({{$jadwal->sesiSelesai->waktu}} )</td>
                                     <td valign="middle">
-                                      
+
                                     </td>
                                   </tr>
                                   @endif
@@ -109,7 +109,7 @@
             <div class="col-sm-8">
               <select class="select2_single form-control" required="" name="sesi_mulai">
                   @foreach($semuaSesi as $sesi)
-                    @if($makul->deleted_at == NULL)
+                    @if($sesi->deleted_at == NULL)
                       <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
@@ -121,7 +121,7 @@
             <div class="col-sm-8">
               <select class="select2_single form-control" required="" name="sesi_selesai">
                   @foreach($semuaSesi as $sesi)
-                    @if($makul->deleted_at == NULL)
+                    @if($sesi->deleted_at == NULL)
                       <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
@@ -148,7 +148,7 @@
           </div>
 
 
-		
+
            <div class="form-group">
                           <label class="col-sm-3 control-label">Foto :</label>
                         <div class="col-sm-8">

@@ -24,7 +24,8 @@ Route::get('dashboard.mahasiswa', function () {
 
     })->name('dashboard.mahasiswa');
 
-
+//LINE Bot
+Route::post('line-updates', 'BotController@updates')->name('linebot.updates');
 
 //user
 Route::get('User', 'UserController@index')->name('user.index');
@@ -90,3 +91,13 @@ Route::get('jadwal-edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
 Route::patch('jadwal-update/{id}', 'JadwalController@update')->name('jadwal.update');
 Route::get('jadwal-delete/{id}', 'JadwalController@destroy')->name('jadwal.destroy');
 Route::get('jadwalTerhapus-restore/{id}', 'JadwalController@terhapusRestore')->name('jadwalTerhapus.restore');
+
+//jadwalTambahan
+
+Route::get('jadwalTambahan-index', 'JadwalTambahanController@index')->name('jadwalTambahan.index');
+Route::get('jadwalTambahan-create', 'JadwalTambahanController@create')->name('jadwalTambahan.create');
+Route::post('jadwalTambahan-store', 'JadwalTambahanController@store')->name('jadwalTambahan.store');
+Route::get('jadwalTambahan-edit/{id}', 'JadwalTambahanController@edit')->name('jadwalTambahan.edit');
+Route::patch('jadwalTambahan-update/{id}', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
+Route::get('jadwalTambahan-delete/{id}', 'JadwalTambahanController@destroy')->name('jadwalTambahan.destroy');
+Route::get('jadwalTambahanTerhapus-restore/{id}', 'JadwalTambahanController@terhapusRestore')->name('jadwalTambahanTerhapus.restore');

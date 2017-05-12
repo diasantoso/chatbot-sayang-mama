@@ -28,6 +28,14 @@ class User extends Authenticatable
 			return $this->belongsTo('App\Prodi');
 		}
 
+		public function jadwal() {
+			return $this->hasMany('App\Jadwal');
+		}
+
+		public function jadwalTambahan() {
+			return $this->hasMany('App\Jadwal_Tambahan');
+		}
+
 		/* --------------- Sesi --------------- */
     public function sesiCreate() {
         return $this->hasMany('App\Sesi', 'created_by');

@@ -57,7 +57,17 @@
                                       data-npm="{{ $semuaUser->npm }}"
                                       data-email="{{ $semuaUser->email }}"
                                       data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
-                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('user.delete', $semuaUser->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
+                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('user.delete', $semuaUser->id) }}" href="#"><span class="fa fa-trash"></span> Nonaktifkan</a>
+                                    </td>
+                                  </tr>
+                                  @else if( $semuaUser->deleted_at != NULL)
+                                  <tr>
+                                    <td valign="middle">{{ $semuaUser->fullname }}</td>
+                                    <td valign="middle">{{ $semuaUser->npm }}</td>
+                                    <td valign="middle">{{ $semuaUser->email }}</td>
+                                    <td valign="middle"><img src="{{ asset('uploads/ProfilePicture/'.$semuaUser->image)}}" height="70" width="100"></td>
+                                    <td valign="middle">
+                                      <a id="aktifkan-btn" class="btn btn-danger btn-xs" customParam="{{ route('user.aktifkan', $semuaUser->id) }}" href="#"><span class="fa fa-trash"></span> Aktifkan</a>
                                     </td>
                                   </tr>
                                   @endif
@@ -205,13 +215,13 @@
             var link = $(this);
 
         swal({
-            title: 'Hapus Data',
-            text: "Apakah anda yakin ingin menghapus data ini?",
+            title: 'Nonaktifkan Data',
+            text: "Apakah anda yakin ingin menonaktifkan data ini?",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Hapus',
+            confirmButtonText: 'Nonaktifkan',
             cancelButtonText: 'Batal',
             confirmButtonClass: 'btn btn-success btn-lg',
             cancelButtonClass: 'btn btn-danger btn-lg',
@@ -224,7 +234,7 @@
             if (dismiss === 'cancel') {
               swal(
                 'Batal',
-                'Data batal untuk dihapus',
+                'Data batal untuk dinonaktifkan',
                 'error'
               )
             }
@@ -235,6 +245,52 @@
     deleter.init();
 </script>
 <!-- Script SweetAlert Konfirmasi Hapus -->
+
+<script>
+    var deleter = {
+
+        linkSelector : "a#aktifkan-btn",
+
+        init: function() {
+            $(this.linkSelector).on('click', {self:this}, this.handleClick);
+        },
+
+        handleClick: function(event) {
+            event.preventDefault();
+
+            var self = event.data.self;
+            var link = $(this);
+
+        swal({
+            title: 'Aktifkan Data',
+            text: "Apakah anda yakin ingin mengaktifkan data ini?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aktifkan',
+            cancelButtonText: 'Batal',
+            confirmButtonClass: 'btn btn-success btn-lg',
+            cancelButtonClass: 'btn btn-danger btn-lg',
+            buttonsStyling: false
+          }).then(function () {
+              window.location = link.attr('customParam');
+          }, function (dismiss) {
+            // dismiss can be 'cancel', 'overlay',
+            // 'close', and 'timer'
+            if (dismiss === 'cancel') {
+              swal(
+                'Batal',
+                'Data batal untuk diaktifkans',
+                'error'
+              )
+            }
+          })
+        },
+    };
+
+    deleter.init();
+</script>
 
 <!-- Datatables Artikel Index -->
 <script>

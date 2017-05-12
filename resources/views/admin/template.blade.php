@@ -145,10 +145,10 @@
                   @if(strcasecmp(Auth::User()->role,'admin')==0)
                   <li><a><i class="fa fa-cog"></i> Pengelolaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"><i class="fa fa-university"></i> Fakultas</a></li>
-                      <li><a href="#"><i class="fa fa-home"></i> Program Studi</a></li>
-                      <li><a href="#"><i class="fa fa-exchange"></i> Sesi </a></li>
-                      <li><a href="#"><i class="fa fa-list-ol"></i> Sesi-Program Studi </a></li>
+                      <li><a href="{{ route('fakultas.index') }}"><i class="fa fa-university"></i> Fakultas</a></li>
+                      <li><a href="{{ route('prodi.index') }}"><i class="fa fa-home"></i> Program Studi</a></li>
+                      <li><a href="{{ route('sesi.index') }}"><i class="fa fa-exchange"></i> Sesi </a></li>
+                      <li><a href="{{ route('user.index') }}"><i class="fa fa-list-ol"></i> Admin </a></li>
                     </ul>
                   </li>
                   @endif
@@ -191,7 +191,7 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="#"><i class="fa fa-user pull-right"></i> Profile</a></li>
 
-                    <li><a href="#"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
+                    <li><a href="{{ route('doLogout') }}"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                   </ul>
                 </li>
 

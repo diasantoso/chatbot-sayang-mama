@@ -19,6 +19,12 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content11" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><span class="fa fa-archive"></span> Data Fakultas</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><span class="fa fa-trash"></span> Data Fakultas Sudah Dihapus</a>
+                        </li>
+                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
@@ -60,7 +66,7 @@
                                     @endif
 
                                     <td valign="middle">
-                                      <a id="edit-btn" class="btn btn-warning btn-xs" customParam="fakultas-update/{{ $fakultas->id }}/" href="#" value="{{ $fakultas->nama }}"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                                      <a id="edit-btn" class="btn btn-warning btn-xs" customParam="fakultas-update/{{ $fakultas->id }}/" href="#" value="{{ $fakultas->nama }}"><span class="fa fa-pencil-square-o"></span> Ubah</a>
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('fakultas.destroy', $fakultas->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
@@ -73,7 +79,47 @@
 
 
                         </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
 
+
+                          <!-------------------------------------------------------------------ARTIKEL TERHAPUS INDEX--------------------------->
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2> Tabel Fakultas Terhapus <small>Daftar fakultas yang telah dihapus</small></h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table id="tabel-fakultasTerhapus" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th align="center">Fakultas</th>
+                                    <th align="center">Dihapus Pada</th>
+                                    <th align="center">Dihapus oleh</th>
+                                    <th align="center">Aksi</th>
+                                  </tr>
+                                </thead>
+
+
+                                <tbody>
+                                  @foreach($semuaFakultas as $fakultas)
+                                  @if( $fakultas->deleted_at != NULL)
+                                  <tr>
+                                    <td valign="middle" >{{ $fakultas->nama }}</td>
+                                    <td align="center" valign="middle">{{ $fakultas->deleted_at }}</td>
+                                    <td valign="middle">{{ $fakultas->deletedBy->fullname }}</td>
+                                    <td valign="middle">
+                                      <a id="restore-btn" class="btn btn-warning btn-xs" customParam="{{ route('fakultasTerhapus.restore', $fakultas->id) }}" href="#"><span class="fa fa-retweet"></span> Kembalikan Data</a>
+                                      <!-- <a id="deletePermanent-btn" class="btn btn-danger btn-xs" customParam="{{ route('fakultasTerhapus.destroy', $fakultas->id) }}" href="#"><span class="fa fa-times"></span> Hapus Permanen</a> -->
+                                    </td>
+                                  </tr>
+                                  @endif
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                        </div>
                       </div>
                     </div>
 

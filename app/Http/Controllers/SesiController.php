@@ -185,7 +185,7 @@ class SesiController extends Controller
         throw $e;
       }
     }
-/*
+
     public function terhapusRestore($id)
     {
       DB::beginTransaction();
@@ -207,6 +207,6 @@ class SesiController extends Controller
           throw $e;
       }
     }
-    */
+    
 
 }

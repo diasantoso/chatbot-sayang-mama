@@ -19,8 +19,6 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
-                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
@@ -53,7 +51,7 @@
                                       data-id="{{ $prodis->id }}"
                                       data-name="{{ $prodis->nama }}"
                                       data-fakultas="{{ $prodis->fakultas->nama }}"
-                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Ubah</a>
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('prodi.delete', $prodis->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>

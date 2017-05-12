@@ -171,7 +171,7 @@ class FakultasController extends Controller
             throw $e;
         }
     }
-  /*
+  
     public function terhapusRestore($id)
     {
       DB::beginTransaction();
@@ -213,6 +213,6 @@ class FakultasController extends Controller
 
           throw $e;
       }
-    }*/
+    }
 
 }

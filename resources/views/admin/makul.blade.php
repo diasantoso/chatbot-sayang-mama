@@ -19,15 +19,13 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
-                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
                          <!--  <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2> Tabel MataKuliah <small>Daftar mata kuliah yang telah dimasukkan</small></h2>
+                              <h2> Tabel Mata Kuliah <small>Daftar mata kuliah yang telah dimasukkan</small></h2>
                               <ul class="nav navbar-right panel_toolbox">
                                 <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Mata Kuliah Baru</a>
                               </ul>
@@ -58,7 +56,7 @@
                                       <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
                                       data-id="{{ $semuaMakul->id }}"
                                       data-nama="{{ $semuaMakul->nama }}"
-                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Ubah</a>
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('makul.destroy', $semuaMakul->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
@@ -91,19 +89,19 @@
         <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add New Mata Kuliah</h4>
+          <h4 class="modal-title">Tambah Mata Kuliah Baru</h4>
         </div>
         <div class="modal-body">
           <form name="formCreateMakul" action="{{ route('makul.store') }}" class="form-horizontal" method="post">
             {{ csrf_field() }}
           <div class="form-group">
-            <label class="col-sm-3 control-label">Name :</label>
+            <label class="col-sm-3 control-label">Nama Mata Kuliah :</label>
             <div class="col-sm-8">
               <input type="text" name="nama" class="form-control nama" style="width:200px;"/>
             </div>
           </div>
           <div class="form-group modal-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
           </div>
           </form>
         </div>
@@ -120,7 +118,7 @@
       <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Update Makul</h4>
+        <h4 class="modal-title">Ubah Makul</h4>
       </div>
       <div class="modal-body">
         <form name="formUpdateUser" action="{{ route('makul.update') }}" class="form-horizontal" method="post">
@@ -128,13 +126,13 @@
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
         <div class="form-group">
-          <label class="col-sm-3 control-label">Name :</label>
+          <label class="col-sm-3 control-label">Nama Mata Kuliah :</label>
           <div class="col-sm-8">
             <input type="text" name="nama" class="form-control nama" style="width:200px;"/>
           </div>
         </div>
         <div class="form-group modal-footer">
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
         </form>
       </div>

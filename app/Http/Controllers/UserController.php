@@ -48,8 +48,9 @@ class UserController extends Controller
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
             $request->file('image')->move('uploads/ProfilePicture/', $request->file('image')->getClientOriginalName());
-        }
             $user_data['image'] = $request->file('image')->getClientOriginalName();
+        }
+            $user_data['password'] = bcrypt($user_data['password']);
             $user_data['role']='Mahasiswa';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
@@ -63,11 +64,12 @@ class UserController extends Controller
             $request->file('image')->move('uploads/ProfilePicture/', $request->file('image')->getClientOriginalName());
              $user_data['image'] = $request->file('image')->getClientOriginalName();
              echo "ada gambar";
-        } 
-        
-           
+        }
+
+
              $user_data['role']='Administrator';
             $user_data['registerdate']=Carbon::now();
+            $user_data['password'] = bcrypt($user_data['password']);
              User::create($user_data);
              return redirect()->route('user.index');
     }
@@ -164,6 +166,16 @@ class UserController extends Controller
         DB::table('users')
             ->where('id',$id)
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
+            return redirect()->route('user.index');
+    }
+
+    public function aktifkan($id)
+    {
+
+
+        DB::table('users')
+            ->where('id',$id)
+            ->update(['deleted_by'=>NULL,'deleted_at'=>NULL]);
             return redirect()->route('user.index');
     }
 

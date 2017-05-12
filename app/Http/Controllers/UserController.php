@@ -45,19 +45,28 @@ class UserController extends Controller
     public function store(Request $request)
     {
         
-        $user_data = $request->except('_token');
-        $user_data['role']='Mahasiswa';
-        User::create($user_data);
-        return redirect()->route('User.index');
+              $user_data = $request->except('_token');
+        if($request->hasFile('image')) {
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());   
+        }
+          $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
+            $user_data['role']='Mahasiswa';
+            $user_data['registerdate']=Carbon::now();
+            User::create($user_data);
+            return redirect()->route('User');
     }
     public function storeadmin(Request $request)
     {
        
         $user_data = $request->except('_token');
-        $user_data['role']='Administrator';
-        $user_data['registerdate']=Carbon::now();
-        User::create($user_data);
-        return redirect()->route('User.index');
+        if($request->hasFile('image')) {
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());   
+        }
+          $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
+            $user_data['role']='Administrator';
+            $user_data['registerdate']=Carbon::now();
+            User::create($user_data);
+            return redirect()->route('User');
     }
 
 
@@ -97,20 +106,20 @@ class UserController extends Controller
         $updated_by=Auth::Users()->id;
 
         $user_data = $request->except('_token');
-        if($request->hasFile('FOTO')) {
-            $request->file('FOTO')->move('FOTO', $request->file('FOTO')->getClientOriginalName());
-            $user_data['FOTO'] = $request->file('FOTO')->getClientOriginalName();
+        if($request->hasFile('image')) {
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());
+            $user_data['image'] = $request->file('image')->getClientOriginalName();
             DB::table('user')
             ->where('id',$user_data['id'])
             ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id]);
-         return redirect()->route('pegawai.index');
+         return redirect()->route('User');
         }
         else {
        DB::table('users')
             ->where('id',$user_data['id'])
             ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => $updated_by]);
         }
-         return redirect()->route('User.index');
+         return redirect()->route('User');
 
     }
 

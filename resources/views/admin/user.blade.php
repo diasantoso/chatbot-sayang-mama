@@ -168,7 +168,7 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">NPM :</label>
           <div class="col-sm-8">
-            <input type="text" name="number" required="required" class="form-control npm" style="width:300px;"/>
+            <input type="number" name="npm" required="required" class="form-control npm" style="width:300px;"/>
           </div>
         </div>
         <div class="form-group">

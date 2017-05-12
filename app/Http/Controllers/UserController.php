@@ -45,6 +45,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
+
+         $email = DB::table('users')
+                ->where('email',$request['email'])
+                ->count();
+
+        if($email!=0)
+        {
+               alert()->error('Register Gagal', 'Email telah digunakan');
+               return redirect('login.index');
+
+        }
+        else{
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
             $request->file('image')->move('uploads/ProfilePicture/', $request->file('image')->getClientOriginalName());
@@ -73,6 +85,7 @@ class UserController extends Controller
                echo "fail";
 
             }
+        }
     }
     public function storeadmin(Request $request)
     {

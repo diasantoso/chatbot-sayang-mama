@@ -146,7 +146,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Nama Prodi :</label>
             <div class="col-sm-8">
-              <input type="text" name="nama" class="form-control" style="width:200px;"/>
+              <input type="text" name="nama" required="required" class="form-control" style="width:200px;"/>
             </div>
           </div>
           <div class="form-group">

@@ -55,5 +55,18 @@
             </div>
           </div>
 
+          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+              <a href="{{ route('makul.index') }}">
+              <div class="icon"><i class="fa fa-university"></i>
+              </div>
+              <div class="count">{{ $totalMakul }}</div>
+
+              <h3>Mata Kuliah</h3>
+              <p>Total Mata Kuliah terdaftar.</p>
+              </a>
+            </div>
+          </div>
+
         </div>
 @endsection

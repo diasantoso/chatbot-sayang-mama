@@ -138,7 +138,7 @@
                 <h3 style="margin-top:85px">Pengelolaan</h3>
                 <ul class="nav side-menu">
                   @if(strcasecmp(Auth::User()->role,'admin')==0)
-                  <li><a href="#"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
+                  <li><a href="{{ route('admindashboard') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
                   @endif
                   <!-- <li><a href="{{ Route('dashboard.mahasiswa') }}"><i class="fa fa-desktop"></i> Dashboard</a></li> -->
                   <li><a href="#"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
@@ -149,6 +149,7 @@
                       <li><a href="{{ route('prodi.index') }}"><i class="fa fa-home"></i> Program Studi</a></li>
                       <li><a href="{{ route('sesi.index') }}"><i class="fa fa-exchange"></i> Sesi </a></li>
                       <li><a href="{{ route('user.index') }}"><i class="fa fa-list-ol"></i> Admin </a></li>
+                      <li><a href="{{ route('makul.index') }}"><i class="fa fa-list-ol"></i> Mata Kuliah </a></li>
                     </ul>
                   </li>
                   @endif

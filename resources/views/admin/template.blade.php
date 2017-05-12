@@ -104,9 +104,16 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
+              @if(strcasecmp(Auth::User()->role,'mahasiswa')==0)
+              <a href="{{ route('jadwal.index') }}" class="site_title"><i class="fa fa-user-md"></i>
+                <span>Reminder</span>
+              </a>
+              @endif
+              @if(strcasecmp(Auth::User()->role,'administrator')==0)
               <a href="{{ route('admindashboard') }}" class="site_title"><i class="fa fa-user-md"></i>
                 <span>Reminder</span>
               </a>
+              @endif
             </div>
 
             <div class="clearfix"></div>
@@ -138,7 +145,8 @@
                 <h3 style="margin-top:85px">Pengelolaan</h3>
                 <ul class="nav side-menu">
                   @if(strcasecmp(Auth::User()->role,'mahasiswa')==0)
-                  <li><a href="#"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
+                  <li><a href="{{ route('jadwal.index') }}"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
+                  <li><a href="{{ route('jadwalTambahan.index') }}"><i class="fa fa-graduation-cap"></i> Jadwal Kuis / Tugas</a></li>
                   @endif
                   @if(strcasecmp(Auth::User()->role,'administrator')==0)
                   <li><a href="{{ route('admindashboard') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>

@@ -203,7 +203,7 @@
             <div class="col-sm-8">
               <select class="select2_single form-control sesi_mulai" required="" name="sesi_mulai">
                   @foreach($semuaSesi as $sesi)
-                    @if($makul->deleted_at == NULL)
+                    @if($sesi->deleted_at == NULL)
                       <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach
@@ -215,7 +215,7 @@
             <div class="col-sm-8">
               <select class="select2_single form-control sesi_selesai" required="" name="sesi_selesai">
                   @foreach($semuaSesi as $sesi)
-                    @if($makul->deleted_at == NULL)
+                    @if($sesi->deleted_at == NULL)
                       <option value="{{ $sesi->id }}">{{ $sesi->hari }}-{{ $sesi->sesi }}</option>
                     @endif
                   @endforeach

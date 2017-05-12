@@ -54,7 +54,25 @@ class UserController extends Controller
             $user_data['role']='Mahasiswa';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
-            return redirect()->route('user.index');
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']],true))
+            {
+                if(Auth::User()->role=='Administrator')
+                {
+                     return redirect('admindashboard');
+                }
+                else
+                {
+                    return redirect('jadwal-index');
+                }
+               
+                   
+           
+            }
+            else {
+
+               echo "fail";
+
+            }
     }
     public function storeadmin(Request $request)
     {
@@ -71,7 +89,25 @@ class UserController extends Controller
             $user_data['registerdate']=Carbon::now();
             $user_data['password'] = bcrypt($user_data['password']);
              User::create($user_data);
-             return redirect()->route('user.index');
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']],true))
+            {
+                if(Auth::User()->role=='Administrator')
+                {
+                     return redirect('admindashboard');
+                }
+                else
+                {
+                    return redirect('jadwal-index');
+                }
+               
+                   
+           
+            }
+            else {
+
+               echo "fail";
+
+            }
     }
 
 

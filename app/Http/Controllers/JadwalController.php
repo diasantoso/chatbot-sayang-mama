@@ -20,12 +20,14 @@ class JadwalController extends Controller
   public function index() {
     $userId = Auth::user()->id;
     $user = User::find($userId);
-
     $semuaJadwal = $user->jadwal;
+    $semuaMakul=Makul::all();
+    $semuaSesi=Sesi::all();
 
-    return view("front.jadwal.index", compact(
-      'semuaJadwal'
-    ));
+
+    return view("admin.jadwal", compact(
+       'semuaJadwal','semuaMakul','semuaSesi'
+     ));
   }
 
   public function checkJadwal($sesiID) {

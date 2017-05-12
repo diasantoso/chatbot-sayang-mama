@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2017 at 07:42 PM
+-- Generation Time: May 12, 2017 at 08:20 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -57,7 +57,7 @@ CREATE TABLE `fakultas` (
 --
 
 INSERT INTO `fakultas` (`id`, `nama`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
-(1, 'FTI', '2017-05-12 16:44:36', '2017-05-12 16:44:36', NULL, 0, NULL, NULL);
+(1, 'FTI', '2017-05-12 16:44:36', '2017-05-12 20:13:26', NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,8 @@ INSERT INTO `fakultas` (`id`, `nama`, `created_at`, `updated_at`, `deleted_at`, 
 CREATE TABLE `jadwal` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
-  `sesi_prodi_id` int(11) NOT NULL DEFAULT '0',
-  `sesi_prodi_id_selesai` int(11) DEFAULT '0',
+  `sesi_mulai` int(11) NOT NULL DEFAULT '0',
+  `sesi_selesai` int(11) DEFAULT '0',
   `makul_id` int(11) NOT NULL,
   `keyword` varchar(250) NOT NULL DEFAULT '0',
   `kelas` varchar(50) NOT NULL,
@@ -152,24 +152,6 @@ INSERT INTO `prodi` (`id`, `fakultas_id`, `nama`, `created_at`, `updated_at`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prodi_sesi`
---
-
-CREATE TABLE `prodi_sesi` (
-  `id` int(5) NOT NULL,
-  `prodi_id` int(5) NOT NULL DEFAULT '0',
-  `sesi_id` int(5) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_at` datetime DEFAULT NULL,
-  `created_by` int(11) NOT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `deleted_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sesi`
 --
 
@@ -220,7 +202,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `chat_log_line_id`, `chat_id`, `jangka_reminder`, `fullname`, `npm`, `email`, `role`, `password`, `lupa_pass`, `status`, `image`, `prodi_id`, `registerdate`, `created_at`, `updated_at`, `deleted_at`, `updated_by`, `deleted_by`, `remember_token`) VALUES
-(1, 1, NULL, NULL, 'Dito Raharjo', '140707962', 'ditoparker@gmail.com', '', '$2y$10$iVru9d3HV71wgsRfUeEWHuyn3nG/FD691pjnT/MgIMU8IW/dAPe3y', NULL, '1', 'Dito Raharjo_2017-03-20.jpg', 13, '2017-02-15', '2017-02-24 11:35:39', '2017-03-19 18:25:33', NULL, NULL, NULL, '8DqDPhimt5BuMvyn3K6vctZ9o5RD3X6XAIW6qNfebGUIJniVnbS5Fo20lmmh');
+(1, 1, NULL, NULL, 'Dito Raharjo', '140707962', 'ditoparker@gmail.com', 'Administrator', '$2y$10$iVru9d3HV71wgsRfUeEWHuyn3nG/FD691pjnT/MgIMU8IW/dAPe3y', NULL, '1', 'Dito Raharjo_2017-03-20.jpg', 13, '2017-02-15', '2017-02-24 11:35:39', '2017-05-12 13:01:04', NULL, NULL, NULL, '8DqDPhimt5BuMvyn3K6vctZ9o5RD3X6XAIW6qNfebGUIJniVnbS5Fo20lmmh');
 
 --
 -- Indexes for dumped tables
@@ -260,12 +242,6 @@ ALTER TABLE `makul`
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `prodi_sesi`
---
-ALTER TABLE `prodi_sesi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -315,11 +291,6 @@ ALTER TABLE `makul`
 --
 ALTER TABLE `prodi`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `prodi_sesi`
---
-ALTER TABLE `prodi_sesi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sesi`
 --

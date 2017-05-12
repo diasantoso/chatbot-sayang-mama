@@ -104,12 +104,12 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              @if(strcasecmp(Auth::user()->role,'admin')==0)
+              @if(strcasecmp(Auth::User()->role,'admin')==0)
               <a href="{{ route('dashboard.admin') }}" class="site_title"><i class="fa fa-user-md"></i>
-              @elseif(strcasecmp(Auth::user()->role,'mahasiswa')==0)
+              @elseif(strcasecmp(Auth::User()->role,'mahasiswa')==0)
               <a href="{{ route('dashboard.mahasiswa') }}" class="site_title"><i class="fa fa-user-md"></i>
               @endif
-                <span>{{ Auth::user()->role }}</span>
+                <span>{{ Auth::User()->role }}</span>
               </a>
             </div>
 
@@ -118,7 +118,7 @@
             <!-- menu profile quick info -->
             <div class="profile">
 
-              @if( Auth::user()->image == NULL)
+              @if( Auth::User()->image == NULL)
               <div class="profile_pic">
                 <img src="{{ asset('uploads/ProfilePicture/defaultprofile.png') }}" alt="..." class="img-circle profile_img">
               </div>
@@ -129,7 +129,7 @@
               @endif
               <div class="profile_info">
                 <span>Selamat datang,</span>
-                <h2 style="margin-top:5px">{{ Auth::user()->fullname }}</h2><!-----------------------------------------------------------------------NAMA USER LOGIN---------------->
+                <h2 style="margin-top:5px">{{ Auth::User()->fullname }}</h2><!-----------------------------------------------------------------------NAMA USER LOGIN---------------->
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -141,12 +141,12 @@
               <div class="menu_section">
                 <h3 style="margin-top:85px">Pengelolaan</h3>
                 <ul class="nav side-menu">
-                  @if(strcasecmp(Auth::user()->role,'admin')==0)
+                  @if(strcasecmp(Auth::User()->role,'admin')==0)
                   <li><a href="{{ Route('dashboard.admin') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
                   @endif
                   <!-- <li><a href="{{ Route('dashboard.mahasiswa') }}"><i class="fa fa-desktop"></i> Dashboard</a></li> -->
                   <li><a href="{{ Route('jadwal.index') }}"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
-                  @if(strcasecmp(Auth::user()->role,'admin')==0)
+                  @if(strcasecmp(Auth::User()->role,'admin')==0)
                   <li><a><i class="fa fa-cog"></i> Pengelolaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ Route('fakultas.index') }}"><i class="fa fa-university"></i> Fakultas</a></li>

@@ -112,7 +112,7 @@
                     <div class="service-box">
                         <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
                         <h3>Masuk di Line</h3>
-                        <p class="text-muted">Setelah menambah data jadwal, kuis atau tugas, kamu harus login di OA line milik ChatBot Reminder untuk mendapatkan chat pengingat dari Bot-nya</p>
+                        <p class="text-muted">Setelah menambah data jadwal, kuis atau tugas, kamu harus login di OA line milik ChatBot Reminder untuk mendapatkan chat pengingat dari Bot-nya (id line OA : @nhr5845b)</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">

@@ -14,7 +14,7 @@ use Auth;
 use App\Http\Requests;
 use App\Fakultas;
 use App\Prodi;
-use App\Users;
+use App\User;
 
 class FakultasController extends Controller
 {
@@ -152,7 +152,7 @@ class FakultasController extends Controller
             throw $e;
         }
     }
-
+  /*
     public function terhapusRestore($id)
     {
       DB::beginTransaction();
@@ -194,6 +194,6 @@ class FakultasController extends Controller
 
           throw $e;
       }
-    }
+    }*/
 
 }

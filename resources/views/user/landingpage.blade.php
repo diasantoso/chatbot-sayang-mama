@@ -20,6 +20,10 @@
     <link href="{{ asset('/landingpage/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
     <link href="{{ asset('/landingpage/css/creative.min.css') }}" rel="stylesheet">
 
+    <!-- Sweet Alert -->
+    <link href="{{ asset('css/sweetalert/sweetalert2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sweetalert/sweetalert2.css') }}" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -134,6 +138,11 @@
     <script src="{{ asset('/landingpage/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/landingpage/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
     <script src="{{ asset('/landingpage/js/creative.min.js') }}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{{ asset('js/sweetalert/sweetalert2.js') }}"></script>
+
+    @include('sweet::alert')
 
 </body>
 

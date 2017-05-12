@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('user/landingpage');
 });
 
+Route::get('dashboard.admin', function () {
+
+    return view('dashboard');
+    })->name('dashboard.admin');
+
+Route::get('dashboard.mahasiswa', function () {
+
+    })->name('dashboard.mahasiswa');
 
 
 
@@ -64,6 +72,12 @@ Route::get('fakultas-delete/{id}', 'FakultasController@destroy')->name('fakultas
 
 Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
 Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
+
+//login
+Route::get('login.index', 'LoginController@index')->name('login.index');
+Route::post('doLogin', 'LoginController@doLogin')->name('doLogin');
+Route::post('doLogout', 'LoginController@doLogout')->name('doLogout');
+Route::get('admindashboard', 'LoginController@admindashboard')->name('admindashboard');
 
 
 //jadwal

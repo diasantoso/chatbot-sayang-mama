@@ -37,6 +37,10 @@
                                   <tr>
                                     <th align="center">Prodi</th>
                                     <th align="center">Fakultas</th>
+                                    <th align="center">Dibuat Pada</th>
+                                    <th align="center">Dibuat Oleh</th>
+                                    <th align="center">Diupdate Pada</th>
+                                    <th align="center">Diupdate Oleh</th>
                                     <th align="center">Aksi</th>
                                   </tr>
                                 </thead>
@@ -45,7 +49,15 @@
                                   @if( $prodis->deleted_at == NULL)
                                   <tr>
                                     <td valign="middle">{{ $prodis->nama }}</td>
-                                    <td valign="middle" >{{ $prodis->fakultas->nama }}</td>
+                                    <td valign="middle">{{ $prodis->fakultas->nama }}</td>
+                                    <td valign="middle">{{ $prodis->created_at }}</td>
+                                    <td valign="middle">{{ $prodis->createdBy->fullname }}</td>
+                                    <td valign="middle">{{ $prodis->updated_at }}</td>
+                                    @if($prodis->updated_by == NULL)
+                                    <td align="center" valign="middle"> - </td>
+                                    @else
+                                    <td valign="middle"> {{ $prodis->updatedBy->fullname }}</td>
+                                    @endif
                                     <td valign="middle">
                                       <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
                                       data-id="{{ $prodis->id }}"

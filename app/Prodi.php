@@ -16,24 +16,24 @@ class Prodi extends Model
     ];
 
     public function fakultas() {
-      $this->belongsTo('App\Fakultas', 'fakultas_id');
+      return $this->belongsTo('App\Fakultas', 'fakultas_id');
     }
 
     public function sesis() {
-      $this->belongsToMany('App\Sesi');
+      return $this->belongsToMany('App\Sesi');
     }
 
     public function user() {
-      $this->hasMany('App\User', 'prodi_id');
+      return $this->hasMany('App\User', 'prodi_id');
     }
 
     public function createdBy() {
-      $this->belongsTo('App\User', 'created_by');
+      return $this->belongsTo('App\User', 'created_by');
     }
     public function updatedBy() {
-      $this->belongsTo('App\User', 'updated_by');
+      return $this->belongsTo('App\User', 'updated_by');
     }
     public function deletedBy() {
-      $this->belongsTo('App\User', 'deleted_by');
+      return $this->belongsTo('App\User', 'deleted_by');
     }
 }

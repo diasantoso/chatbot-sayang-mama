@@ -25,7 +25,7 @@ class SesiController extends Controller
     {
         //
         $semuaSesi = Sesi::all();
-        return view("front.sesi.index", compact("semuaSesi"));
+        return view("admin.sesi", compact("semuaSesi"));
     }
 
     /**
@@ -36,7 +36,7 @@ class SesiController extends Controller
     public function create()
     {
         //
-        return view('front.sesi.create');
+        return view('admin.sesi');
     }
 
     /**
@@ -122,7 +122,7 @@ class SesiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
         $sesi_data = $request->except('_token');
@@ -138,7 +138,7 @@ class SesiController extends Controller
           DB::beginTransaction();
 
           try{
-              $sesi = Sesi::find($id);
+              $sesi = Sesi::find($sesi_data['id']);
               $sesi->update($sesi_data);
 
               DB::commit();

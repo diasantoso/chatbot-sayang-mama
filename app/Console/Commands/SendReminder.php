@@ -48,10 +48,6 @@ class SendReminder extends Command
      */
     public function handle()
     {
-      // init bot
-      $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
-      $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
-
       $now = Carbon::now();
 
       $dateNow = substr($now, 0, 10);
@@ -197,16 +193,16 @@ class SendReminder extends Command
               }
             } else if(strcasecmp($hariKuliah, "Minggu")==0 && strcasecmp($dayNow, "Sunday")==0 ) {
               if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
-                $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
-                        PHP_EOL .
-                        PHP_EOL .
-                        "Ruangan : ".$jadwal->ruangan;
-                $textSend = $text;
-
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
-                $result = $bot->pushMessage($userId, $textMessageBuilder);
-
-                return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
                 $hari = "Minggu";
                 $count++;
               }
@@ -216,6 +212,10 @@ class SendReminder extends Command
         }
 
       }
+
+      // init bot
+      $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+      $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
 
       $userId = "Ud6c98299e8a444e219b9479efe772f52";
       $text = "Hari : ". $hari . PHP_EOL . "Count : ". $count;

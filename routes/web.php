@@ -51,7 +51,7 @@ Route::post('sesi-store', 'SesiController@store')->name('sesi.store');
 Route::get('sesi-edit/{id}', 'SesiController@edit')->name('sesi.edit');
 Route::patch('sesi-update', 'SesiController@update')->name('sesi.update');
 Route::get('sesi-delete/{id}', 'SesiController@destroy')->name('sesi.destroy');
-// Route::get('sesiTerhapus-restore/{id}', 'SesiController@terhapusRestore')->name('sesiTerhapus.restore');
+Route::get('sesiTerhapus-restore/{id}', 'SesiController@terhapusRestore')->name('sesiTerhapus.restore');
 
 
 //makul

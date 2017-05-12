@@ -12,7 +12,7 @@ use Response;
 use Auth;
 use App\Http\Requests;
 use App\Makul;
-use App\Users;
+use App\User;
 
 class MakulController extends Controller
 {
@@ -183,7 +183,7 @@ class MakulController extends Controller
         throw $e;
       }
     }
-
+/*
     public function terhapusRestore($id)
     {
       DB::beginTransaction();
@@ -205,5 +205,6 @@ class MakulController extends Controller
           throw $e;
       }
     }
+    */
 
 }

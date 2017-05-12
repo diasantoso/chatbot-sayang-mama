@@ -12,7 +12,7 @@ use Response;
 use Auth;
 use App\Http\Requests;
 use App\Sesi;
-use App\Users;
+use App\User;
 
 class SesiController extends Controller
 {
@@ -185,7 +185,7 @@ class SesiController extends Controller
         throw $e;
       }
     }
-
+/*
     public function terhapusRestore($id)
     {
       DB::beginTransaction();
@@ -207,5 +207,6 @@ class SesiController extends Controller
           throw $e;
       }
     }
+    */
 
 }

@@ -74,8 +74,8 @@ Route::get('fakultas-store/{input}', 'FakultasController@store')->name('fakultas
 Route::get('fakultas-update/{id}/{input}', 'FakultasController@update')->name('fakultas.update');
 Route::get('fakultas-delete/{id}', 'FakultasController@destroy')->name('fakultas.destroy');
 
-// Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
-// Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
+Route::get('fakultasTerhapus-restore/{id}', 'FakultasController@terhapusRestore')->name('fakultasTerhapus.restore');
+Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy')->name('fakultasTerhapus.destroy');
 
 //login
 Route::get('login.index', 'LoginController@index')->name('login.index');

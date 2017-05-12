@@ -44,14 +44,6 @@ class JadwalController extends Controller
   public function store(Request $request) {
     $jadwal_data = $request->except("_token");
 
-    $this->validate($request, [
-        'sesi_prodi_id' => 'required',
-        'makul_id' => 'required',
-        'keyword' => 'required',
-        'kelas' => 'required',
-        'ruangan' => 'required',
-    ]);
-
     DB::beginTransaction();
 
     try{
@@ -71,18 +63,9 @@ class JadwalController extends Controller
     }
   }
 
-  public function update(Request $request, $id) {
+  public function update(Request $request) {
     $jadwal_data = $request->except("_token");
-
-    $this->validate($request, [
-        'sesi_prodi_id' => 'required',
-        'makul_id' => 'required',
-        'keyword' => 'required',
-        'kelas' => 'required',
-        'ruangan' => 'required',
-    ]);
-
-    $jadwal = Jadwal::find($id);
+    $jadwal = Jadwal::find($request['id']);
 
     DB::beginTransaction();
 

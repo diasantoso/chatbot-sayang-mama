@@ -63,7 +63,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Pengingat untuk Agenda Perkuliahan dengan LINE MESSENGER</h1>
+                <h1 id="homeHeading">Pengingat Agenda Perkuliahan dengan LINE MESSENGER</h1>
                 <hr>
                 <p>Dikembangkan oleh Tim Sayang Mama, UAJY 2017</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Cek Lebih Lanjut</a>

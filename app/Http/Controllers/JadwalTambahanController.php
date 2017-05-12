@@ -23,7 +23,7 @@ class JadwalTambahanController extends Controller
 
     $semuaJadwalTambahan = $user->jadwalTambahan;
 
-    return view("front.jadwalTambahan.index", compact('semuaJadwalTambahan'));
+    return view("admin.kuis", compact('semuaJadwalTambahan'));
   }
 
   public function checkJadwal($sesiID) {
@@ -58,7 +58,7 @@ class JadwalTambahanController extends Controller
       DB::commit();
 
       alert()->success('Data berhasil di tambahkan', 'Tambah Data Berhasil!');
-      return redirect()->route('jadwalTambahan.index');
+      return redirect()->route('admin.kuis');
     }catch(\Exception $e){
         DB::rollback();
         throw $e;
@@ -86,7 +86,7 @@ class JadwalTambahanController extends Controller
       DB::commit();
 
       alert()->success('Data berhasil di ubah', 'Ubah Data Berhasil!');
-      return redirect()->route('jadwalTambahan.index');
+      return redirect()->route('admin.kuis');
     }catch(\Exception $e){
         DB::rollback();
         throw $e;
@@ -105,7 +105,7 @@ class JadwalTambahanController extends Controller
       DB::commit();
 
       alert()->success('Data berhasil di hapus', 'Hapus Data Berhasil!');
-      return redirect()->route('jadwalTambahan.index');
+      return redirect()->route('kuis.index');
     }catch(\Exception $e){
         DB::rollback();
         throw $e;

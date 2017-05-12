@@ -31,9 +31,9 @@
                           <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2> Tabel User <small>Daftar sesi yang telah dimasukkan</small></h2>
+                              <h2> Tabel Sesi <small>Daftar sesi yang telah dimasukkan</small></h2>
                               <ul class="nav navbar-right panel_toolbox">
-                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah User Baru</a>
+                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Sesi Baru</a>
                               </ul>
                               <div class="clearfix"></div>
                             </div>
@@ -70,7 +70,7 @@
                                       data-id="{{ $sesi->id }}"
                                       data-hari="{{ $sesi->hari }}"
                                       data-sesi="{{ $sesi->sesi }}"
-                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Ubah</a>
 
                                       <!-- <a id="edit-btn" class="btn btn-warning btn-xs" href="{{ route('sesi.edit', $sesi->id) }}"><span class="fa fa-pencil-square-o"></span> Edit</a> -->
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('sesi.destroy', $sesi->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
@@ -158,7 +158,7 @@
         <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add New Sesi</h4>
+          <h4 class="modal-title">Tambah Sesi Baru</h4>
         </div>
         <div class="modal-body">
           <form name="formCreateUser" action="{{ route('sesi.store') }}" class="form-horizontal" method="post">
@@ -206,7 +206,7 @@
       <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Update Sesi</h4>
+        <h4 class="modal-title">Ubah Sesi</h4>
       </div>
       <div class="modal-body">
         <form name="formUpdateUser" action="{{ route('sesi.update') }}" class="form-horizontal" method="post">

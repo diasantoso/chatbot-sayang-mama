@@ -48,7 +48,7 @@
 
         <div class="animate form login_form" >
           <section class="login_content">
-            <form action="{{ route('user.do.register') }}" method="post">
+            <form action="{{ route('user.store') }}" method="post">
               {{ csrf_field() }}
               <h1>Create Account</h1>
               <div>
@@ -114,7 +114,7 @@
         <div id="register" class="animate form registration_form">
           <section class="login_content">
 
-            <form action="{{ route('user.auth.login') }}" method="post">
+            <form action="{{ route('doLogin') }}" method="post">
               {{ csrf_field() }}
               <h1>ChatBot Reminder Login</h1>
               <div>

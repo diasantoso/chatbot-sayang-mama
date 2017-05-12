@@ -44,16 +44,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about">Tentang</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#services">Alur Penggunaan</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Login</a>
+                        <a class="page-scroll" href="{{ route('login.index') }}">Login</a>
                     </li>
                 </ul>
             </div>
@@ -65,10 +62,10 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Reminder for College Agenda</h1>
+                <h1 id="homeHeading">Pengingat untuk Agenda Perkuliahan</h1>
                 <hr>
-                <p>Developing by Sayang Mama Team, UAJY 2017</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Check Out More</a>
+                <p>Dikembangkan oleh Tim Sayang Mama, UAJY 2017</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Cek Lebih Lanjut</a>
             </div>
         </div>
     </header>
@@ -77,10 +74,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">What is ChatBot Reminder?</h2>
+                    <h2 class="section-heading">Apa itu ChatBot Reminder?</h2>
                     <hr class="light">
-                    <p class="text-faded">ChatBot Reminder is an application which to remind students about their agenda.</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan, meliputi jadwal, kuis dan tugas kuliah.<br/><br/><br/></p>
+                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Memulai!</a>
                 </div>
             </div>
         </div>
@@ -90,7 +87,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">How it Works?</h2>
+                    <h2 class="section-heading">Bagaimana Ia Bekerja?</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -100,29 +97,29 @@
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-user-plus text-primary sr-icons"></i>
-                        <h3>Signup</h3>
-                        <p class="text-muted">You can signup first to get reminder</p>
+                        <h3>Mendaftar</h3>
+                        <p class="text-muted">Kamu harus mendaftar terlebih dahulu di website resmi</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
-                        <h3>Login into Website</h3>
-                        <p class="text-muted">After signup, you can login in website to add schedule, quiz and task</p>
+                        <h3>Masuk di Website</h3>
+                        <p class="text-muted">Setelah mendaftar, kamu dapat masuk ke sistem untuk memasukkan data jadwal, kuis atau tugas kuliah mu.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
-                        <h3>Login in Line</h3>
-                        <p class="text-muted">After add schedule, quiz or task, you must login in Official Account from ChatBot Reminder</p>
+                        <h3>Masuk di Line</h3>
+                        <p class="text-muted">Setelah menambah data jadwal, kuis atau tugas, kamu harus login di OA line milik ChatBot Reminder untuk mendapatkan chat pengingat dari Bot-nya</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-bell text-primary sr-icons"></i>
-                        <h3>Get Reminder</h3>
-                        <p class="text-muted">You will get reminder from schedule, quiz and task which inputed from website</p>
+                        <h3>Dapat Pengingat</h3>
+                        <p class="text-muted">Kamu akan mendapatkan peringatan berupa chat dari Bot milik ChatBot Reminder sesuai dengan jadwal, kuis atau tugas yang telah kamu masukkan di sistem.</p>
                     </div>
                 </div>
             </div>

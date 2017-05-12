@@ -16,13 +16,19 @@ class LoginController extends Controller
         $semuaFakultas = Fakultas::all();
         return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
     }
+     public function register()
+    {
+        $semuaProdi = Prodi::all();
+        $semuaFakultas = Fakultas::all();
+        return view('loginregister.register', compact('users','semuaFakultas','semuaProdi'));
+    }
      public function admindashboard()
     {
     	  $totalUser = User::all()->where('deleted_at','=' ,NULL)->count();
     	  $totalProdi = Prodi::all()->where('deleted_at','=' ,NULL)->count();
-          $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
-          $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
-          return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
+        $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
+        $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
+        return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
     }
 
     public function doLogin(Request $request)

@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         //
-          $users = User::all();
+          $users = User::all()->where('id','!=',Auth::User()->id);
           $prodi = Prodi::all();
           $fakultas = Fakultas::all();
           return view('admin.user', compact('users','fakultas','prodi'));
@@ -76,9 +76,9 @@ class UserController extends Controller
                 {
                     return redirect('jadwal-index');
                 }
-               
-                   
-           
+
+
+
             }
             else {
 
@@ -112,9 +112,9 @@ class UserController extends Controller
                 {
                     return redirect('jadwal-index');
                 }
-               
-                   
-           
+
+
+
             }
             else {
 

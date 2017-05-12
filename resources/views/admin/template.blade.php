@@ -191,7 +191,7 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="#"><i class="fa fa-user pull-right"></i> Profile</a></li>
 
-                    <li><a href="#"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
+                    <li><a href="{{ route('doLogout') }}"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                   </ul>
                 </li>
 

@@ -13,8 +13,8 @@ class LoginController extends Controller
      public function index()
     {
     	  $semuaProdi = Prodi::all();
-          $semuaFakultas = Fakultas::all();
-          return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
+        $semuaFakultas = Fakultas::all();
+        return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
     }
      public function admindashboard()
     {
@@ -35,10 +35,10 @@ class LoginController extends Controller
         // attempt to do the login
            if (Auth::attempt(['email' => $email, 'password' => $password],true))
             {
-                
+
                 return redirect('admindashboard');
-            } 
-            else {        
+            }
+            else {
 
                echo "fail";
 

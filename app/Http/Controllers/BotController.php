@@ -480,14 +480,14 @@ class BotController extends Controller
               $password = substr($textReceived, strpos($textReceived, "-") +1);
 
               if($this->checkEmail($email) == true) {
-                if($this->checkPassword($userId, $email, $password)== true ) {
+                if($this->checkPassword($userId, $email, $password) == true ) {
                   $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
                 } else {
-                  $textSend = $this->checkPassword($userId, $email, $password);
-                  // $textSend = " Pass Maaf email atau password anda salah". PHP_EOL .
-                  // "atau anda belum terdaftar". PHP_EOL .
-                  // "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-                  // "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+                  // $textSend = $this->checkPassword($userId, $email, $password);
+                  $textSend = " Pass Maaf email atau password anda salah". PHP_EOL .
+                  "atau anda belum terdaftar". PHP_EOL .
+                  "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
+                  "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
                 }
               } else {
                 $textSend = "Email Maaf email atau password anda salah". PHP_EOL .
@@ -641,21 +641,21 @@ class BotController extends Controller
             $chat_log_data->save();
 
             DB::commit();
+            return true;
           } catch (\Exception $e) {
             DB::rollback();
             throw $e;
-            return "false0";
           }
-          return true;
+          // return true;
 
         } else {
-          return "false1";
+          return false;
         }
       } else {
-        return "false2";
+        return false;
       }
     } else {
-      return "false";
+      return false;
     }
   }
 

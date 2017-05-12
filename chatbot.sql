@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2017 at 08:20 PM
+-- Generation Time: May 13, 2017 at 02:13 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -34,6 +34,13 @@ CREATE TABLE `chat_log_line` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat_log_line`
+--
+
+INSERT INTO `chat_log_line` (`id`, `user_id`, `chat_id`, `display_name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Ud6c98299e8a444e219b9479efe772f52', 'Vincentius Dito R.', '2017-03-11 23:16:28', '2017-03-11 23:16:28');
 
 -- --------------------------------------------------------
 
@@ -74,7 +81,6 @@ CREATE TABLE `jadwal` (
   `keyword` varchar(250) NOT NULL DEFAULT '0',
   `kelas` varchar(50) NOT NULL,
   `ruangan` varchar(250) NOT NULL,
-  `pengingat` time DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL,
@@ -82,6 +88,13 @@ CREATE TABLE `jadwal` (
   `updated_by` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`id`, `user_id`, `sesi_mulai`, `sesi_selesai`, `makul_id`, `keyword`, `kelas`, `ruangan`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(1, 1, 5, 0, 1, 'jadwal 1', 'A', '3215', '2017-05-12 18:18:51', '2017-05-12 18:21:20', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,6 +120,13 @@ CREATE TABLE `jadwal_tambahan` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jadwal_tambahan`
+--
+
+INSERT INTO `jadwal_tambahan` (`id`, `user_id`, `makul_id`, `nama`, `deskripsi`, `waktu_mulai`, `waktu_selesai`, `type`, `keyword`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(1, 1, 1, 'Kuis 1', 'Deskripsi Kuis 1', '2017-05-13 01:25:00', '2017-05-13 02:30:00', 'Kuis', 'Kuis 1', '2017-05-12 18:28:26', '2017-05-12 18:34:03', NULL, 1, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +143,15 @@ CREATE TABLE `makul` (
   `updated_by` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `makul`
+--
+
+INSERT INTO `makul` (`id`, `nama`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(1, 'Makul 1', '2017-05-12 18:18:27', '2017-05-12 18:18:29', NULL, 1, NULL, NULL),
+(2, 'Makul 2', '2017-05-12 18:18:35', '2017-05-12 18:18:36', NULL, 1, NULL, NULL),
+(3, 'Makul 3', '2017-05-12 18:18:41', '2017-05-12 18:18:43', NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,6 +197,17 @@ CREATE TABLE `sesi` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `sesi`
+--
+
+INSERT INTO `sesi` (`id`, `hari`, `sesi`, `waktu`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(1, 'Senin', 1, '07:00:00', '2017-05-12 18:19:01', '2017-05-12 18:19:20', NULL, 1, NULL, NULL),
+(2, 'Senin', 2, '09:45:00', '2017-05-12 18:19:19', '2017-05-12 18:19:26', NULL, 1, NULL, NULL),
+(3, 'Senin', 3, '12:45:00', '2017-05-12 18:19:37', '2017-05-12 18:19:47', NULL, 1, NULL, NULL),
+(4, 'Senin', 4, '15:30:00', '2017-05-12 18:20:02', '2017-05-12 18:20:16', NULL, 1, NULL, NULL),
+(5, 'Sabtu', 1, '02:25:00', '2017-05-12 18:20:27', '2017-05-12 18:27:56', NULL, 1, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -177,8 +217,6 @@ CREATE TABLE `sesi` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `chat_log_line_id` int(11) DEFAULT NULL,
-  `chat_id` int(11) DEFAULT NULL,
-  `jangka_reminder` int(11) DEFAULT NULL,
   `fullname` varchar(250) NOT NULL,
   `npm` varchar(250) DEFAULT NULL,
   `email` varchar(250) NOT NULL,
@@ -201,8 +239,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `chat_log_line_id`, `chat_id`, `jangka_reminder`, `fullname`, `npm`, `email`, `role`, `password`, `lupa_pass`, `status`, `image`, `prodi_id`, `registerdate`, `created_at`, `updated_at`, `deleted_at`, `updated_by`, `deleted_by`, `remember_token`) VALUES
-(1, 1, NULL, NULL, 'Dito Raharjo', '140707962', 'ditoparker@gmail.com', 'Administrator', '$2y$10$iVru9d3HV71wgsRfUeEWHuyn3nG/FD691pjnT/MgIMU8IW/dAPe3y', NULL, '1', 'Dito Raharjo_2017-03-20.jpg', 13, '2017-02-15', '2017-02-24 11:35:39', '2017-05-12 13:01:04', NULL, NULL, NULL, '8DqDPhimt5BuMvyn3K6vctZ9o5RD3X6XAIW6qNfebGUIJniVnbS5Fo20lmmh');
+INSERT INTO `users` (`id`, `chat_log_line_id`, `fullname`, `npm`, `email`, `role`, `password`, `lupa_pass`, `status`, `image`, `prodi_id`, `registerdate`, `created_at`, `updated_at`, `deleted_at`, `updated_by`, `deleted_by`, `remember_token`) VALUES
+(1, 1, 'Dito Raharjo', '140707962', 'ditoparker@gmail.com', 'Administrator', '$2y$10$iVru9d3HV71wgsRfUeEWHuyn3nG/FD691pjnT/MgIMU8IW/dAPe3y', NULL, '1', 'Dito Raharjo_2017-03-20.jpg', 13, '2017-02-15', '2017-02-24 11:35:39', '2017-05-12 13:01:04', NULL, NULL, NULL, '8DqDPhimt5BuMvyn3K6vctZ9o5RD3X6XAIW6qNfebGUIJniVnbS5Fo20lmmh');
 
 --
 -- Indexes for dumped tables
@@ -265,7 +303,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chat_log_line`
 --
 ALTER TABLE `chat_log_line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `fakultas`
 --
@@ -275,17 +313,17 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `jadwal_tambahan`
 --
 ALTER TABLE `jadwal_tambahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `makul`
 --
 ALTER TABLE `makul`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `prodi`
 --
@@ -295,7 +333,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `sesi`
 --
 ALTER TABLE `sesi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --

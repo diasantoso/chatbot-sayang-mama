@@ -27,6 +27,8 @@ Route::get('dashboard.mahasiswa', function () {
 //LINE Bot
 Route::post('line-updates', 'BotController@updates')->name('linebot.updates');
 Route::get('test-cron', 'BotController@test')->name('test.cron');
+Route::get('coba-reminderKuliah', 'BotController@cobaReminderKuliah')->name('coba.reminderKuliah');
+Route::get('coba-reminderTambahan', 'BotController@cobaReminderTambahan')->name('coba.reminderTambahan');
 
 //user
 Route::get('User', 'UserController@index')->name('user.index');

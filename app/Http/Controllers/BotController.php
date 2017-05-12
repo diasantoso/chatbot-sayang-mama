@@ -38,7 +38,7 @@ class BotController extends Controller
 
     $password = substr($textReceived, strpos($textReceived, "-") +1);
 
-    echo $this->checkPassword($userId, $email, $password);
+    echo $this->checkLogin($userId);
     // init bot
     // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
     // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
@@ -566,8 +566,8 @@ class BotController extends Controller
 
   public function checkLogin($userId) {
     $check = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
-    $checkCount = $check->count();
-    if($checkCount == 1) {
+
+    if($check != null) {
       $chatLog = Chat_Log_line::find($check->id);
 
       if($chatLog->user_id == 0) {

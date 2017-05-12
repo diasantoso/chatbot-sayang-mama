@@ -57,7 +57,7 @@ class BotController extends Controller
           $textReceived = $event['message']['text'];
 
           if(strcasecmp($textReceived, "halo")==0) {
-            $textSend = "Horee berhasil";
+            $textSend = $userId;
           }
 
           $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);

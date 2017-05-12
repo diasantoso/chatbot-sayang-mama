@@ -24,7 +24,7 @@
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                          <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX---------------------------> -->
                           <div class="x_panel">
                             <div class="x_title">
                               <h2> Tabel User <small>Daftar user yang telah dimasukkan</small></h2>

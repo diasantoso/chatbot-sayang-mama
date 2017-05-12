@@ -30,7 +30,8 @@ Route::get('dashboard.mahasiswa', function () {
 Route::get('User', 'UserController@index')->name('user.index');
 Route::post('User.store', 'UserController@store')->name('user.store');
 Route::post('Admin.store', 'UserController@storeadmin')->name('admin.store');
-Route::patch('User.update', 'PegawaiController@update')->name('user.update');
+Route::patch('User.update', 'UserController@update')->name('user.update');
+Route::patch('User.updateadmin', 'UserController@updateadmin')->name('user.updateadmin');
 Route::get('User.delete/{id}', 'UserController@destroy')->name('user.delete');
 
 

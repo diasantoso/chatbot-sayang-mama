@@ -34,28 +34,35 @@
                               <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                              <table id="tabel-fakultas" class="table table-striped table-bordered">
+                              <table id="tabel-user" class="table table-striped table-bordered">
                                 <thead>
                                   <tr>
                                     <th align="center">Full Name</th>
                                     <th align="center">NPM</th>
                                     <th align="center">Email</th>
-                                    <th align="center">Prodi</th>
+                                    <th align="center">Image</th>
                                     <th align="center">Aksi</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($users as $users)
+                                  @foreach($users as $semuaUser)
+                                  @if( $semuaUser->deleted_at == NULL)
                                   <tr>
-                                    <td valign="middle">{{ $users->fullname }}</td>
-                                    <td valign="middle">{{ $users->npm }}</td>
-                                    <td valign="middle">{{ $users->email }}</td>
-                                    <td valign="middle">{{ $users->prodi }}</td>
+                                    <td valign="middle">{{ $semuaUser->fullname }}</td>
+                                    <td valign="middle">{{ $semuaUser->npm }}</td>
+                                    <td valign="middle">{{ $semuaUser->email }}</td>
+                                    <td valign="middle"><img src="{{ asset('uploads/ProfilePicture/'.$semuaUser->image)}}" height="70" width="100"></td>
                                     <td valign="middle">
-                                      <a id="edit-btn" class="btn btn-warning btn-xs" customParam="" href="#" value=""><span class="fa fa-pencil-square-o"></span> Edit</a>
-                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="" href="#"><span class="fa fa-trash"></span> Hapus</a>
+                                      <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
+                                      data-id="{{ $semuaUser->id }}"
+                                      data-fullname="{{ $semuaUser->fullname }}"
+                                      data-npm="{{ $semuaUser->npm }}"
+                                      data-email="{{ $semuaUser->email }}"
+                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('user.delete', $semuaUser->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
+                                  @endif
                                   @endforeach
                                 </tbody>
                               </table>
@@ -122,6 +129,49 @@
 
 			</div>
 		  </div>
+
+      <!-- Modal Update -->
+    <div class="modal fade" id="myModalUpdate" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update User</h4>
+      </div>
+      <div class="modal-body">
+        <form name="formUpdateUser" action="{{ route('user.updateadmin') }}" class="form-horizontal" method="post">
+          {{ csrf_field() }}
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Full Name :</label>
+          <div class="col-sm-8">
+            <input type="text" name="fullname" class="form-control fullname" style="width:200px;"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">NPM :</label>
+          <div class="col-sm-8">
+            <input type="text" name="npm" class="form-control npm" style="width:300px;"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email :</label>
+          <div class="col-sm-8">
+            <input type="text" name="email" class="form-control email" style="width:200px;"/>
+          </div>
+        </div>
+        <div class="form-group modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        </form>
+      </div>
+      </div>
+
+    </div>
+    </div>
 <!-- /page content -->
 
 @endsection
@@ -178,16 +228,22 @@
 
 <!-- Datatables Artikel Index -->
 <script>
-    $('#tabel-fakultas').dataTable({
-      "columnDefs" : [
-        {
-        "targets": [3],
-        "visible": false,
-        "searchable" : false
-        }
-      ],
-      "order": [[ 3, 'asc'  ]]
-    });
+    $('#tabel-user').dataTable();
 </script>
 <!-- /Datatables Artikel Index -->
+
+<script type="text/javascript">
+  $(document).on( "click", '.edit_button',function(e) {
+
+        var id = $(this).data('id');
+        $(".id").val(id);
+        var fullname = $(this).data('fullname');
+        $(".fullname").val(fullname);
+        var npm = $(this).data('npm');
+        $(".npm").val(npm);
+        var email = $(this).data('email');
+        $(".email").val(email);
+
+    });
+    </script>
 @endsection

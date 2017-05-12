@@ -50,7 +50,7 @@
                         <a class="page-scroll" href="#services">Alur Penggunaan</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#">Login</a>
+                        <a class="page-scroll" href="{{ route('login.index') }}">Login</a>
                     </li>
                 </ul>
             </div>

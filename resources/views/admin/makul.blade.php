@@ -19,10 +19,16 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                     <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content11" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><span class="fa fa-archive"></span> Data Mata Kuliah</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><span class="fa fa-trash"></span> Data Mata Kuliah Sudah Dihapus</a>
+                        </li>
+                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                         <!--  <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
                               <h2> Tabel Mata Kuliah <small>Daftar mata kuliah yang telah dimasukkan</small></h2>
@@ -44,24 +50,24 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($semuaMakul as $semuaMakul)
-                                  @if( $semuaMakul->deleted_at == NULL)
+                                  @foreach($semuaMakul as $makul)
+                                  @if( $makul->deleted_at == NULL)
                                   <tr>
-                                    <td valign="middle">{{ $semuaMakul->nama }}</td>
-                                    <td valign="middle">{{ $semuaMakul->created_at }}</td>
-                                    <td valign="middle">{{ $semuaMakul->createdBy->fullname }}</td>
-                                    <td valign="middle">{{ $semuaMakul->updated_at }}</td>
-                                    @if($semuaMakul->updated_by == NULL)
+                                    <td valign="middle">{{ $makul->nama }}</td>
+                                    <td valign="middle">{{ $makul->created_at }}</td>
+                                    <td valign="middle">{{ $makul->createdBy->fullname }}</td>
+                                    <td valign="middle">{{ $makul->updated_at }}</td>
+                                    @if($makul->updated_by == NULL)
                                     <td align="center" valign="middle"> - </td>
                                     @else
-                                    <td valign="middle"> {{ $semuaMakul->updatedBy->fullname }}</td>
+                                    <td valign="middle"> {{ $makul->updatedBy->fullname }}</td>
                                     @endif
                                     <td valign="middle">
                                       <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
-                                      data-id="{{ $semuaMakul->id }}"
-                                      data-nama="{{ $semuaMakul->nama }}"
+                                      data-id="{{ $makul->id }}"
+                                      data-nama="{{ $makul->nama }}"
                                       data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Ubah</a>
-                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('makul.destroy', $semuaMakul->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
+                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('makul.destroy', $makul->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
                                   @endif
@@ -72,6 +78,45 @@
                           </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
+
+                         <!-- <!-------------------------------------------------------------------ARTIKEL TERHAPUS INDEX--------------------------->
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2> Tabel Mata Kuliah Terhapus <small>Daftar mata kuliah yang telah dihapus</small></h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table id="tabel-makulTerhapus" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th align="center">Nama</th>
+                                    <th align="center">Dihapus Pada</th>
+                                    <th align="center">Dihapus oleh</th>
+                                    <th align="center">Aksi</th>
+                                  </tr>
+                                </thead>
+
+
+                                <tbody>
+                                  @foreach($semuaMakul as $makul)
+                                  @if($makul->deleted_at != NULL)
+                                  <tr>
+                                    <td valign="middle" >{{ $makul->nama }}</td>
+                                    <td valign="middle">{{ $makul->deleted_at }}</td>
+                                    <td valign="middle">{{ $makul->deletedBy->fullname }}</td>
+                                    <td valign="middle">
+                                      <a id="restore-btn" class="btn btn-warning btn-xs" customParam="{{ route('makulTerhapus.restore', $makul->id) }}" href="#"><span class="fa fa-retweet"></span> Kembalikan Data</a>
+                                    </td>
+                                  </tr>
+                                  @endif
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                        </div>
+
 
                        </div>
                       </div>
@@ -212,5 +257,55 @@
         $(".nama").val(nama);
 
     });
-    </script>
+</script>
+
+<script>
+      var deleter = {
+
+          linkSelector : "a#restore-btn",
+
+          init: function() {
+              $(this.linkSelector).on('click', {self:this}, this.handleClick);
+          },
+
+          handleClick: function(event) {
+              event.preventDefault();
+
+              var self = event.data.self;
+              var link = $(this);
+
+          swal({
+              title: 'Apakah anda yakin?',
+              text: "Data akan dipulihkan ke kondisi sebelum dihapus!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Restore',
+              cancelButtonText: 'Batal',
+              confirmButtonClass: 'btn btn-success btn-lg',
+              cancelButtonClass: 'btn btn-danger btn-lg',
+              buttonsStyling: false
+            }).then(function () {
+                window.location = link.attr('customParam');
+            }, function (dismiss) {
+              // dismiss can be 'cancel', 'overlay',
+              // 'close', and 'timer'
+              if (dismiss === 'cancel') {
+                swal(
+                  'Batal',
+                  'Data batal untuk dipulihkan',
+                  'error'
+                )
+              }
+            })
+          },
+      };
+
+      deleter.init();
+  </script>
+
+  <script>
+    $('#tabel-makulTerhapus').dataTable();
+</script>
 @endsection

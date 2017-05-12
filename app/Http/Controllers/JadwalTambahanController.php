@@ -22,8 +22,9 @@ class JadwalTambahanController extends Controller
     $user = User::find($userId);
 
     $semuaJadwalTambahan = $user->jadwalTambahan;
+    $semuaMakul=Makul::all();
 
-    return view("front.jadwalTambahan.index", compact('semuaJadwalTambahan'));
+    return view("admin.kuis", compact('semuaJadwalTambahan','semuaMakul'));
   }
 
   public function checkJadwal($sesiID) {
@@ -51,7 +52,7 @@ class JadwalTambahanController extends Controller
 
     try{
       $jadwalTambahan_data['created_by'] = Auth::user()->id;
-      $jadwalTambahan_data['user_id'] = Auth::user()->id;
+      $jadwalTambahan_data['user_id'] =  Auth::user()->id;
 
       Jadwal_Tambahan::create($jadwalTambahan_data);
 
@@ -65,23 +66,15 @@ class JadwalTambahanController extends Controller
     }
   }
 
-  public function update(Request $request, $id) {
+  public function update(Request $request) {
     $jadwalTambahan_data = $request->except("_token");
-
-    $this->validate($request, [
-        'nama' => 'required',
-        'makul_id' => 'required',
-        'keyword' => 'required',
-        'type' => 'required',
-    ]);
-
-    $jadwalTambahan = Jadwal_Tambahan::find($id);
+    $jadwalTambahan = Jadwal_Tambahan::find($request['id']);
 
     DB::beginTransaction();
 
     try{
       $jadwal_data['updated_by'] = Auth::User()->id;
-      $jadwal->update($jadwalTambahan_data);
+      $jadwalTambahan->update($jadwalTambahan_data);
 
       DB::commit();
 

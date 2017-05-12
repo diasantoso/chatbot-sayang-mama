@@ -19,6 +19,12 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content11" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><span class="fa fa-archive"></span> Data Program Studi</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content22" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><span class="fa fa-trash"></span> Data Program Studi Sudah Dihapus</a>
+                        </li>
+                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
@@ -59,11 +65,8 @@
                                     <td valign="middle"> {{ $prodis->updatedBy->fullname }}</td>
                                     @endif
                                     <td valign="middle">
-                                      <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
-                                      data-id="{{ $prodis->id }}"
-                                      data-name="{{ $prodis->nama }}"
-                                      data-fakultas="{{ $prodis->fakultas->nama }}"
-                                      data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Ubah</a>
+                                      <a id="edit-btn" class="btn btn-warning btn-xs" href="{{ route('prodi.edit', $prodis->id) }}"><span class="fa fa-pencil-square-o"></span> Edit</a>
+
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('prodi.delete', $prodis->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
@@ -75,6 +78,45 @@
                           </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
+
+
+                          <!-------------------------------------------------------------------ARTIKEL TERHAPUS INDEX--------------------------->
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2> Tabel Program Studi Terhapus <small>Daftar program studi yang telah dihapus</small></h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table id="tabel-prodiTerhapus" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th align="center">Program Studi</th>
+                                    <th align="center">Fakultas</th>
+                                    <th align="center">Dihapus Pada</th>
+                                    <th align="center">Dihapus oleh</th>
+                                    <th align="center">Aksi</th>
+                                  </tr>
+                                </thead>
+
+
+                                <tbody>
+                                  @foreach($prodi as $prodis)
+                                  @if( $prodis->deleted_at != NULL)
+                                  <tr>
+                                    <td valign="middle" >{{ $prodis->nama }}</td>
+                                    <td valign="middle" >{{ $prodis->fakultas->nama }}</td>
+                                    <td align="center" valign="middle">{{ $prodis->deleted_at }}</td>
+                                    <td valign="middle">{{ $prodis->deletedBy->fullname }}</td>
+                                    <td valign="middle">
+                                      <a id="restore-btn" class="btn btn-warning btn-xs" customParam="{{ route('prodiTerhapus.restore', $prodis->id) }}" href="#"><span class="fa fa-retweet"></span> Kembalikan Data</a>
+                                    </td>
+                                  </tr>
+                                  @endif
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
 
                         </div>
                       </div>
@@ -130,54 +172,58 @@
       </div>
 
       <!-- Modal Update -->
-    <div class="modal fade" id="myModalUpdate" role="dialog">
-    <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Update Prodi</h4>
-      </div>
-      <div class="modal-body">
-        <form name="formUpdateProdi" action="{{ route('prodi.update') }}" class="form-horizontal" method="post">
-          {{ csrf_field() }}
-          <input type="hidden" name="_method" value="PATCH">
-          <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Nama Prodi :</label>
-          <div class="col-sm-8">
-            <input type="text" name="nama" class="form-control nama" style="width:200px;"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Nama Fakultas :</label>
-          <div class="col-sm-8">
-            <select class="select2_single form-control fakultas" required="" name="fakultas_id">
-                @foreach($fakultas as $semuaFakultas)
-                  @if($semuaFakultas->deleted_at == NULL)
-                    <option value="{{ $semuaFakultas->id }}">{{ $semuaFakultas->nama }}</option>
-                  @endif
-                @endforeach
-              </select>
-          </div>
-        </div>
-        <div class="form-group modal-footer">
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-        </form>
-      </div>
-      </div>
-
-    </div>
-    </div>
 
 <!-- /page content -->
 
 @endsection
 
 @section('custom_script')
+<script>
+    var deleter = {
 
+        linkSelector : "a#restore-btn",
+
+        init: function() {
+            $(this.linkSelector).on('click', {self:this}, this.handleClick);
+        },
+
+        handleClick: function(event) {
+            event.preventDefault();
+
+            var self = event.data.self;
+            var link = $(this);
+
+        swal({
+            title: 'Apakah anda yakin?',
+            text: "Data akan dipulihkan ke kondisi sebelum dihapus!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Restore',
+            cancelButtonText: 'Batal',
+            confirmButtonClass: 'btn btn-success btn-lg',
+            cancelButtonClass: 'btn btn-danger btn-lg',
+            buttonsStyling: false
+          }).then(function () {
+              window.location = link.attr('customParam');
+          }, function (dismiss) {
+            // dismiss can be 'cancel', 'overlay',
+            // 'close', and 'timer'
+            if (dismiss === 'cancel') {
+              swal(
+                'Batal',
+                'Data batal untuk dipulihkan',
+                'error'
+              )
+            }
+          })
+        },
+    };
+
+    deleter.init();
+</script>
 <!-- Script SweetAlert Konfirmasi Hapus -->
 <script>
     var deleter = {
@@ -231,7 +277,9 @@
     $('#tabel-user').dataTable();
 </script>
 <!-- /Datatables Artikel Index -->
-
+<script>
+    $('#tabel-prodiTerhapus').dataTable();
+</script>
 <script type="text/javascript">
   $(document).on( "click", '.edit_button',function(e) {
 

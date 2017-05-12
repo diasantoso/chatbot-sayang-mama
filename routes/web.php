@@ -45,8 +45,13 @@ Route::get('User.aktifkan/{id}', 'UserController@aktifkan')->name('user.aktifkan
 
 Route::get('Prodi', 'ProdiController@index')->name('prodi.index');
 Route::post('Prodi.store', 'ProdiController@store')->name('prodi.store');
-Route::patch('Prodi.update', 'ProdiController@update')->name('prodi.update');
+Route::get('Prodi-edit/{id}', 'ProdiController@edit')->name('prodi.edit');
+Route::patch('Prodi.update/{id}', 'ProdiController@update')->name('prodi.update');
 Route::get('Prodi.delete/{id}', 'ProdiController@destroy')->name('prodi.delete');
+
+
+  Route::get('prodiTerhapus-restore/{id}', 'ProdiController@terhapusRestore')->name('prodiTerhapus.restore');
+  Route::get('prodiTerhapus-destroy/{id}', 'ProdiController@terhapusDestroy')->name('prodiTerhapus.destroy');
 
 //sesi
 
@@ -54,7 +59,7 @@ Route::get('sesi-index', 'SesiController@index')->name('sesi.index');
 Route::get('sesi-create', 'SesiController@create')->name('sesi.create');
 Route::post('sesi-store', 'SesiController@store')->name('sesi.store');
 Route::get('sesi-edit/{id}', 'SesiController@edit')->name('sesi.edit');
-Route::patch('sesi-update', 'SesiController@update')->name('sesi.update');
+Route::patch('sesi-update/{id}', 'SesiController@update')->name('sesi.update');
 Route::get('sesi-delete/{id}', 'SesiController@destroy')->name('sesi.destroy');
 Route::get('sesiTerhapus-restore/{id}', 'SesiController@terhapusRestore')->name('sesiTerhapus.restore');
 
@@ -67,7 +72,7 @@ Route::post('makul-store', 'MakulController@store')->name('makul.store');
 Route::get('makul-edit/{id}', 'MakulController@edit')->name('makul.edit');
 Route::patch('makul-update', 'MakulController@update')->name('makul.update');
 Route::get('makul-delete/{id}', 'MakulController@destroy')->name('makul.destroy');
-// Route::get('makulTerhapus-restore/{id}', 'MakulController@terhapusRestore')->name('makulTerhapus.restore');
+Route::get('makulTerhapus-restore/{id}', 'MakulController@terhapusRestore')->name('makulTerhapus.restore');
 
 
 //fakultas
@@ -94,9 +99,8 @@ Route::get('jadwal-index', 'JadwalController@index')->name('jadwal.index');
 Route::get('jadwal-create', 'JadwalController@create')->name('jadwal.create');
 Route::post('jadwal-store', 'JadwalController@store')->name('jadwal.store');
 Route::get('jadwal-edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
-Route::patch('jadwal-update/{id}', 'JadwalController@update')->name('jadwal.update');
+Route::patch('jadwal-update', 'JadwalController@update')->name('jadwal.update');
 Route::get('jadwal-delete/{id}', 'JadwalController@destroy')->name('jadwal.destroy');
-Route::get('jadwalTerhapus-restore/{id}', 'JadwalController@terhapusRestore')->name('jadwalTerhapus.restore');
 
 //jadwalTambahan
 
@@ -104,11 +108,11 @@ Route::get('jadwalTambahan-index', 'JadwalTambahanController@index')->name('jadw
 Route::get('jadwalTambahan-create', 'JadwalTambahanController@create')->name('jadwalTambahan.create');
 Route::post('jadwalTambahan-store', 'JadwalTambahanController@store')->name('jadwalTambahan.store');
 Route::get('jadwalTambahan-edit/{id}', 'JadwalTambahanController@edit')->name('jadwalTambahan.edit');
-Route::patch('jadwalTambahan-update/{id}', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
+Route::patch('jadwalTambahan-update', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
 Route::get('jadwalTambahan-delete/{id}', 'JadwalTambahanController@destroy')->name('jadwalTambahan.destroy');
-Route::get('jadwalTambahanTerhapus-restore/{id}', 'JadwalTambahanController@terhapusRestore')->name('jadwalTambahanTerhapus.restore');
 
 //Profil
+
 Route::get('Profile-index', 'ProfileController@index')->name('Profile.index');
 Route::patch('Profile-update/{id}', 'ProfileController@update')->name('Profile.update');
 Route::patch('Profile-updatefoto/{id}', 'ProfileController@updateFoto')->name('Profile.updatefoto');

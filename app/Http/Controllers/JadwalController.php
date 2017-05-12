@@ -20,12 +20,14 @@ class JadwalController extends Controller
   public function index() {
     $userId = Auth::user()->id;
     $user = User::find($userId);
-
     $semuaJadwal = $user->jadwal;
+    $semuaMakul=Makul::all();
+    $semuaSesi=Sesi::all();
 
-    return view("front.jadwal.index", compact(
-      'semuaJadwal'
-    ));
+
+    return view("admin.jadwal", compact(
+       'semuaJadwal','semuaMakul','semuaSesi'
+     ));
   }
 
   public function checkJadwal($sesiID) {
@@ -41,14 +43,6 @@ class JadwalController extends Controller
 
   public function store(Request $request) {
     $jadwal_data = $request->except("_token");
-
-    $this->validate($request, [
-        'sesi_prodi_id' => 'required',
-        'makul_id' => 'required',
-        'keyword' => 'required',
-        'kelas' => 'required',
-        'ruangan' => 'required',
-    ]);
 
     DB::beginTransaction();
 
@@ -69,18 +63,9 @@ class JadwalController extends Controller
     }
   }
 
-  public function update(Request $request, $id) {
+  public function update(Request $request) {
     $jadwal_data = $request->except("_token");
-
-    $this->validate($request, [
-        'sesi_prodi_id' => 'required',
-        'makul_id' => 'required',
-        'keyword' => 'required',
-        'kelas' => 'required',
-        'ruangan' => 'required',
-    ]);
-
-    $jadwal = Jadwal::find($id);
+    $jadwal = Jadwal::find($request['id']);
 
     DB::beginTransaction();
 

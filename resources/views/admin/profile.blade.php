@@ -120,12 +120,6 @@
           </div>
           @endif
 
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Profile Pengguna</h3>
-            </div>
-          </div>
-
           <div class="clearfix"></div>
 
           <div class="row">
@@ -223,13 +217,6 @@
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="email" id="email" name="email" required="required" placeholder="Email yang digunakan pada FB, LINE, dan Telegram" class="form-control col-md-7 col-xs-12" value="{{ $pengguna->email }}">
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Telegram Username</label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="telegram_username" class="form-control col-md-7 col-xs-12" type="text" name="telegram_username" placeholder="Telegram Username, ex : vincentiusdito, Without @ " value="{{ $pengguna->telegram_username }}">
                           </div>
                         </div>
 

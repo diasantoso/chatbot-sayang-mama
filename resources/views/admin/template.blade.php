@@ -104,9 +104,16 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
+              @if(strcasecmp(Auth::User()->role,'mahasiswa')==0)
+              <a href="{{ route('jadwal.index') }}" class="site_title"><i class="fa fa-user-md"></i>
+                <span>Reminder</span>
+              </a>
+              @endif
+              @if(strcasecmp(Auth::User()->role,'administrator')==0)
               <a href="{{ route('admindashboard') }}" class="site_title"><i class="fa fa-user-md"></i>
                 <span>Reminder</span>
               </a>
+              @endif
             </div>
 
             <div class="clearfix"></div>
@@ -138,11 +145,11 @@
                 <h3 style="margin-top:85px">Pengelolaan</h3>
                 <ul class="nav side-menu">
                   @if(strcasecmp(Auth::User()->role,'mahasiswa')==0)
-                  <li><a href="{{ route('admindashboard') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
+                  <li><a href="{{ route('jadwal.index') }}"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
+                  <li><a href="{{ route('jadwalTambahan.index') }}"><i class="fa fa-graduation-cap"></i> Jadwal Kuis / Tugas</a></li>
                   @endif
-                  <!-- <li><a href="{{ Route('dashboard.mahasiswa') }}"><i class="fa fa-desktop"></i> Dashboard</a></li> -->
-                  <li><a href="#"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
                   @if(strcasecmp(Auth::User()->role,'administrator')==0)
+                  <li><a href="{{ route('admindashboard') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
                   <li><a><i class="fa fa-cog"></i> Pengelolaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('fakultas.index') }}"><i class="fa fa-university"></i> Fakultas</a></li>
@@ -190,7 +197,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="#"><i class="fa fa-user pull-right"></i> Profile</a></li>
+                    <li><a href="{{ route('Profile.index') }}"><i class="fa fa-user pull-right"></i> Profile</a></li>
 
                     <li><a href="{{ route('doLogout') }}"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                   </ul>

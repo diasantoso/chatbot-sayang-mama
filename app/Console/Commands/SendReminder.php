@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 
 use \LINE\LINEBot\SignatureValidator as SignatureValidator;
 
+use Carbon\Carbon;
+
 class SendReminder extends Command
 {
     /**
@@ -39,9 +41,18 @@ class SendReminder extends Command
      */
     public function handle()
     {
+      // init bot
+      $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+      $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
+
+      $userId = "Ud6c98299e8a444e219b9479efe772f52";
+
+      $textSend = "coba cron jobs - ".Carbon::now();
 
       $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
       $result = $bot->pushMessage($userId, $textMessageBuilder);
+
+      $this->info('The messages were sent successfully ululululu!');
 
       return $result->getHTTPStatus() . ' ' . $result->getRawBody();
     }

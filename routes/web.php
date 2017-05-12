@@ -34,6 +34,7 @@ Route::post('Admin.store', 'UserController@storeadmin')->name('admin.store');
 Route::patch('User.update', 'UserController@update')->name('user.update');
 Route::patch('User.updateadmin', 'UserController@updateadmin')->name('user.updateadmin');
 Route::get('User.delete/{id}', 'UserController@destroy')->name('user.delete');
+Route::get('User.aktifkan/{id}', 'UserController@aktifkan')->name('user.aktifkan');
 
 
 

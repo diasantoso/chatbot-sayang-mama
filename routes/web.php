@@ -77,3 +77,4 @@ Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy'
 Route::get('login.index', 'LoginController@index')->name('login.index');
 Route::post('doLogin', 'LoginController@doLogin')->name('doLogin');
 Route::post('doLogout', 'LoginController@doLogout')->name('doLogout');
+Route::get('admindashboard', 'LoginController@admindashboard')->name('admindashboard');

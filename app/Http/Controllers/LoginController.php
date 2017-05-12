@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Users;
+use App\User;
 use App\Prodi;
 use App\Fakultas;
-
+use App\Sesi;
 class LoginController extends Controller
 {
      public function index()
@@ -16,6 +16,15 @@ class LoginController extends Controller
           $semuaFakultas = Fakultas::all();
           return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
     }
+     public function admindashboard()
+    {
+    	  $totalUser = User::all()->count();
+    	  $totalProdi = Prodi::all()->count();
+          $totalFakultas = Fakultas::all()->count();
+          $totalSesi = Sesi::all()->count();
+          return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
+    }
+
     public function doLogin(Request $request)
     {
 
@@ -26,8 +35,8 @@ class LoginController extends Controller
         // attempt to do the login
            if (Auth::attempt(['email' => $email, 'password' => $password],true))
             {
-                return redirect()->route('user.index');
                 
+                return redirect('admindashboard');
             } 
             else {        
 

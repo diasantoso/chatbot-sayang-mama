@@ -138,7 +138,7 @@ class UserController extends Controller
         DB::table('users')
             ->where('id',$id)
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
-            return redirect()->route('User');
+            return redirect()->route('user.delete');
     }
 
     

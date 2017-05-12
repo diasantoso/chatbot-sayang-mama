@@ -349,7 +349,8 @@ class SendReminder extends Command
               $text = "[".$jadwal->type." ".$jadwal->nama." Telah Dibuka]" .
                       PHP_EOL .
                       PHP_EOL .
-                      "Mata Kuliah : ".$jadwal->makul->nama.
+                      "Mata Kuliah : ".$jadwal->makul->nama .
+                      PHP_EOL .
                       "Deadline : ".$jadwal->waktu_selesai;
               $textSend = $text;
 
@@ -369,6 +370,7 @@ class SendReminder extends Command
                       PHP_EOL .
                       PHP_EOL .
                       "Mata Kuliah : ".$jadwal->makul->nama.
+                      PHP_EOL .
                       "Deadline : ".$jadwal->waktu_selesai;
               $textSend = $text;
 

@@ -121,13 +121,13 @@
             <div class="form-group">
             <label class="col-sm-3 control-label">Waktu Mulai :</label>
             <div class="col-sm-8">
-              <input type="date" name="waktu_mulai" required="required" class="form-control" style="width:300px;"/>
+              <input type="datetime-local" name="waktu_mulai" required="required" class="form-control" style="width:300px;"/>
             </div>
           </div>
             <div class="form-group">
             <label class="col-sm-3 control-label">Waktu Selesai :</label>
             <div class="col-sm-8">
-              <input type="date" name="waktu_selesai" required="required" class="form-control" style="width:300px;"/>
+              <input type="datetime-local" name="waktu_selesai" required="required" class="form-control" style="width:300px;"/>
             </div>
           </div>
             <div class="form-group">

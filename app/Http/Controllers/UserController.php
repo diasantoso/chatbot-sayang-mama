@@ -54,7 +54,8 @@ class UserController extends Controller
     {
        
         $user_data = $request->except('_token');
-         $user_data['role']='Administrator';
+        $user_data['role']='Administrator';
+        $user_data['registerdate']=Carbon::now();
         User::create($user_data);
         return redirect()->route('User.index');
     }

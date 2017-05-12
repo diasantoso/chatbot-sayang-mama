@@ -70,6 +70,10 @@ class ProdiController extends Controller
     public function edit($id)
     {
         //
+        $prodi = Prodi::find($id);
+        $semuaFakultas = Fakultas::all();
+
+        return view('admin.editprodi', compact('prodi', 'semuaFakultas'));
     }
 
     /**

@@ -99,28 +99,28 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-user-plus text-primary sr-icons"></i>
                         <h3>Signup</h3>
                         <p class="text-muted">You can signup first to get reminder</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
                         <h3>Login into Website</h3>
                         <p class="text-muted">After signup, you can login in website to add schedule, quiz and task</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-sign-in text-primary sr-icons"></i>
                         <h3>Login in Line</h3>
                         <p class="text-muted">After add schedule, quiz or task, you must login in Official Account from ChatBot Reminder</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-bell text-primary sr-icons"></i>
                         <h3>Get Reminder</h3>
                         <p class="text-muted">You will get reminder from schedule, quiz and task which inputed from website</p>
                     </div>

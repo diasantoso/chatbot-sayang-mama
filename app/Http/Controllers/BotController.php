@@ -391,7 +391,7 @@ class BotController extends Controller
           $replyToken = $event['replyToken'];
 
           //To save chat log
-          $this->getUser($userId);
+          // $this->getUser($userId);
 
           $textReceived = $event['message']['text'];
           $helpCommand = "Halo, berikut perintah-perintah yang dapat digunakan di ChatBot : " . PHP_EOL .
@@ -400,7 +400,7 @@ class BotController extends Controller
           "logout : Untuk keluar dari akun yang sedang anda gunakan pada platform chat". PHP_EOL .
           PHP_EOL . "Jika anda belum pernah melakukan login sebelumnya, maka anda perlu login terlebih dahulu di platform chat dengan mengetikkan email dan password anda dengan format :". PHP_EOL ."email-password". PHP_EOL ."contoh : asd@gmail.com-asdfghj";
 
-          if($this->checkLogin($userId) == true) {
+          // if($this->checkLogin($userId) == true) {
             // $checkMakulResult = $this->checkMakul($userId, $textReceived);
             // if($checkMakulResult != false) {
             //   $textSend = $checkMakulResult;
@@ -439,36 +439,36 @@ class BotController extends Controller
               }
             // }
 
-          } else if(strcasecmp($textReceived, "help")==0) {
-            $textSend = $helpCommand;
-          } else {
-            if (($check = strpos($textReceived, "-")) !== FALSE) {
-              $email = strtok($textReceived, '-');
-              $password = substr($textReceived, strpos($textReceived, "-") +1);
-
-              if($this->checkEmail($email) == true) {
-                if($this->checkPassword($userId, $email, $password)== true ) {
-                  $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
-                } else {
-                  $textSend = "Maaf email atau password anda salah". PHP_EOL .
-                  "atau anda belum terdaftar". PHP_EOL .
-                  "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-                  "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-                }
-              } else {
-                $textSend = "Maaf email atau password anda salah". PHP_EOL .
-                "atau anda belum terdaftar". PHP_EOL .
-                "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-                "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-              }
-            } else {
-              $textSend = "Maaf anda perlu login terlebih dahulu".PHP_EOL.
-              "silahkan kirimkan chat email dan password yang sudah anda daftarkan di ". PHP_EOL .$registerUrl. PHP_EOL .
-              "dengan format : email-password". PHP_EOL .
-              "contoh: asdf@gmail.com-1234 " . PHP_EOL .
-              "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-            }
-          }
+          // } else if(strcasecmp($textReceived, "help")==0) {
+          //   $textSend = $helpCommand;
+          // } else {
+          //   if (($check = strpos($textReceived, "-")) !== FALSE) {
+          //     $email = strtok($textReceived, '-');
+          //     $password = substr($textReceived, strpos($textReceived, "-") +1);
+          //
+          //     if($this->checkEmail($email) == true) {
+          //       if($this->checkPassword($userId, $email, $password)== true ) {
+          //         $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
+          //       } else {
+          //         $textSend = "Maaf email atau password anda salah". PHP_EOL .
+          //         "atau anda belum terdaftar". PHP_EOL .
+          //         "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
+          //         "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+          //       }
+          //     } else {
+          //       $textSend = "Maaf email atau password anda salah". PHP_EOL .
+          //       "atau anda belum terdaftar". PHP_EOL .
+          //       "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
+          //       "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+          //     }
+          //   } else {
+          //     $textSend = "Maaf anda perlu login terlebih dahulu".PHP_EOL.
+          //     "silahkan kirimkan chat email dan password yang sudah anda daftarkan di ". PHP_EOL .$registerUrl. PHP_EOL .
+          //     "dengan format : email-password". PHP_EOL .
+          //     "contoh: asdf@gmail.com-1234 " . PHP_EOL .
+          //     "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+          //   }
+          // }
 
           $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
           $result = $bot->pushMessage($userId, $textMessageBuilder);

@@ -110,6 +110,7 @@ Route::patch('jadwalTambahan-update', 'JadwalTambahanController@update')->name('
 Route::get('jadwalTambahan-delete/{id}', 'JadwalTambahanController@destroy')->name('jadwalTambahan.destroy');
 
 //Profil
+
 Route::get('Profile-index', 'ProfileController@index')->name('Profile.index');
 Route::patch('Profile-update/{id}', 'ProfileController@update')->name('Profile.update');
 Route::patch('Profile-updatefoto/{id}', 'ProfileController@updateFoto')->name('Profile.updatefoto');

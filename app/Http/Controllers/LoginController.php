@@ -8,6 +8,7 @@ use App\User;
 use App\Prodi;
 use App\Fakultas;
 use App\Sesi;
+use App\Makul;
 class LoginController extends Controller
 {
      public function index()
@@ -28,7 +29,8 @@ class LoginController extends Controller
     	  $totalProdi = Prodi::all()->where('deleted_at','=' ,NULL)->count();
         $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
         $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
-        return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
+        $totalMakul = Makul::All()->where('deleted_at','=' ,NULL)->count();
+        return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi','totalMakul'));
     }
 
     public function doLogin(Request $request)

@@ -48,9 +48,188 @@ class SendReminder extends Command
      */
     public function handle()
     {
-      $this->cobaReminderKuliah();
+      // init bot
+      $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+      $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET')]);
 
-      $this->cobaReminderTambahan();
+      $now = Carbon::now();
+
+      $dateNow = substr($now, 0, 10);
+      $timeNow = substr($now, 11, 18);
+
+      $dayNow = Carbon::now()->format('l');
+
+      $semuaUser = User::where('deleted_at', null)->get();
+
+      $hari = "kosong";
+      $count = 0;
+
+      foreach ($semuaUser as $user) {
+        if($user->chat_log_line_id != null) {
+          $userId = $user->chatLog->chat_id;
+
+          foreach ($user->jadwal as $jadwal) {
+            $hariKuliah = $jadwal->sesiMulai->hari;
+            $jamKuliah = $jadwal->sesiMulai->waktu;
+
+            $jamBaru = substr($jamKuliah,0,2);
+            $menitBaru = substr($jamKuliah,3,2);
+
+            $jamLama = substr($timeNow,0,2);
+            $menitLama = substr($timeNow,3,2);
+
+            if(substr($jamBaru,0,1) == 0) {
+              $jam = substr($jamBaru,1,1);
+            } else {
+              $jam = $jamBaru;
+            }
+
+            if(substr($menitBaru,0,1) == 0) {
+              $menit = substr($menitBaru,1,1);
+            } else {
+              $menit = $menitBaru;
+            }
+
+            if(substr($jamLama,0,1) == 0) {
+              $jamNow = substr($jamLama,1,1);
+            } else {
+              $jamNow = $jamLama;
+            }
+
+            if(substr($menitLama,0,1) == 0) {
+              $menitNow = substr($menitLama,1,1);
+            } else {
+              $menitNow = $menitLama;
+            }
+
+            $jangkaPengingat = 1; //Type Waktu Jam
+            $jamPengingat = $jam - $jangkaPengingat;
+
+            if(strcasecmp($hariKuliah, "Senin")==0 && strcasecmp($dayNow, "Monday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                $hari = "Senin";
+                $count++;
+              }
+            } else if(strcasecmp($hariKuliah, "Selasa")==0 && strcasecmp($dayNow, "Tuesday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                $hari = "Selasa";
+                $count++;
+              }
+            } else if(strcasecmp($hariKuliah, "Rabu")==0 && strcasecmp($dayNow, "Wednesday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                $hari = "Rabu";
+                $count++;
+              }
+            } else if(strcasecmp($hariKuliah, "Kamis")==0 && strcasecmp($dayNow, "Thursday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                // $hari = "Kamis";
+                // $count++;
+              }
+            } else if(strcasecmp($hariKuliah, "Jumat")==0 && strcasecmp($dayNow, "Friday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                $hari = "Jumat";
+                $count++;
+              }
+            } else if(strcasecmp($hariKuliah, "Sabtu")==0 && strcasecmp($dayNow, "Saturday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                // $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                //         PHP_EOL .
+                //         PHP_EOL .
+                //         "Ruangan : ".$jadwal->ruangan;
+                // $textSend = $text;
+                //
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                // $result = $bot->pushMessage($userId, $textMessageBuilder);
+                //
+                // return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                $hari = "Sabtu";
+                $count++;
+              }
+            } else if(strcasecmp($hariKuliah, "Minggu")==0 && strcasecmp($dayNow, "Sunday")==0 ) {
+              if( ($jamNow==$jamPengingat) && (($menit+5)>$menitNow) && ($menitNow>=$menit) ) {
+                $text = "[Kuliah ".$jadwal->makul->nama." 1 jam lagi]" .
+                        PHP_EOL .
+                        PHP_EOL .
+                        "Ruangan : ".$jadwal->ruangan;
+                $textSend = $text;
+
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+                $result = $bot->pushMessage($userId, $textMessageBuilder);
+
+                return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+                $hari = "Minggu";
+                $count++;
+              }
+            }
+
+          }
+        }
+
+      }
+
+      $userId = "Ud6c98299e8a444e219b9479efe772f52";
+      $text = "Hari : ". $hari . PHP_EOL . "Count : ". $count;
+      $textSend = $text;
+
+      $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
+      $result = $bot->pushMessage($userId, $textMessageBuilder);
+
+      return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+      // echo $hari."</br>";
+      // echo $count;
+      // $this->cobaReminderKuliah();
+      //
+      // $this->cobaReminderTambahan();
     }
 
     public function cobaReminderKuliah() {

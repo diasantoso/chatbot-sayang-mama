@@ -120,12 +120,6 @@
           </div>
           @endif
 
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Profile Pengguna</h3>
-            </div>
-          </div>
-
           <div class="clearfix"></div>
 
           <div class="row">

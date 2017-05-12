@@ -19,10 +19,6 @@ class Prodi extends Model
       return $this->belongsTo('App\Fakultas', 'fakultas_id');
     }
 
-    public function sesis() {
-      return $this->belongsToMany('App\Sesi');
-    }
-
     public function user() {
       return $this->hasMany('App\User', 'prodi_id');
     }

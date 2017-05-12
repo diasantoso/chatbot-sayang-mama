@@ -14,8 +14,12 @@ class Sesi extends Model
             'deleted_by',
     ];
 
-    public function prodis() {
-      return $this->belongsToMany('App\Prodi');
+    public function jadwalMulai() {
+      return $this->hasMany('App\Jadwal', 'sesi_mulai');
+    }
+
+    public function jadwalSelesai() {
+      return $this->hasMany('App\Jadwal', 'sesi_selesai');
     }
 
     public function createdBy() {

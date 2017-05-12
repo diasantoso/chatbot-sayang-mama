@@ -8,7 +8,7 @@ class Jadwal extends Model
 {
     protected $table = 'jadwal';
     protected $fillable = [
-        'id','user_id','sesi_prodi_id','sesi_prodi_id_selesai','makul_id','keyword','kelas','ruangan','pengingat','created_at','updated_at','deleted_at',
+        'id','user_id','sesi_mulai','sesi_selesai','makul_id','keyword','kelas','ruangan','pengingat','created_at','updated_at','deleted_at',
             'created_by',
             'updated_by',
             'deleted_by',
@@ -18,12 +18,11 @@ class Jadwal extends Model
       return $this->belongsTo('App\User');
     }
 
-    public function sesi() {
-      return $this->belongsTo('App\SesiProdi', 'sesi_prodi_id');
+    public function sesiMulai() {
+      return $this->belongsTo('App\Sesi', 'sesi_mulai');
     }
-
     public function sesiSelesai() {
-      return $this->belongsTo('App\SesiProdi', 'sesi_prodi_id_selesai');
+      return $this->belongsTo('App\Sesi', 'sesi_selesai');
     }
 
     public function makul() {

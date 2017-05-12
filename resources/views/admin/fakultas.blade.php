@@ -60,7 +60,7 @@
                                     @endif
 
                                     <td valign="middle">
-                                      <a id="edit-btn" class="btn btn-warning btn-xs" customParam="fakultas-update/{{ $fakultas->id }}/" href="#" value="{{ $fakultas->nama }}"><span class="fa fa-pencil-square-o"></span> Edit</a>
+                                      <a id="edit-btn" class="btn btn-warning btn-xs" customParam="fakultas-update/{{ $fakultas->id }}/" href="#" value="{{ $fakultas->nama }}"><span class="fa fa-pencil-square-o"></span> Ubah</a>
                                       <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('fakultas.destroy', $fakultas->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>

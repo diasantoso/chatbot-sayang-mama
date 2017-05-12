@@ -138,11 +138,10 @@
                 <h3 style="margin-top:85px">Pengelolaan</h3>
                 <ul class="nav side-menu">
                   @if(strcasecmp(Auth::User()->role,'mahasiswa')==0)
-                  <li><a href="{{ route('admindashboard') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
-                  @endif
-                  <!-- <li><a href="{{ Route('dashboard.mahasiswa') }}"><i class="fa fa-desktop"></i> Dashboard</a></li> -->
                   <li><a href="#"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
+                  @endif
                   @if(strcasecmp(Auth::User()->role,'administrator')==0)
+                  <li><a href="{{ route('admindashboard') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
                   <li><a><i class="fa fa-cog"></i> Pengelolaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('fakultas.index') }}"><i class="fa fa-university"></i> Fakultas</a></li>

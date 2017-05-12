@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\SendReminder',
+        \App\Console\Commands\SendReminder::class,
     ];
 
     /**
@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('line:sendReminder --force')->everyMinute();
+        $url = "http://ditoraharjo.co/chatbot/test-cron";
+        $schedule->command('line:sendReminder')->everyMinute()->pingBefore($url)->thenPing($url);
     }
 
     /**

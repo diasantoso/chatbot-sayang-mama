@@ -53,7 +53,7 @@ class UserController extends Controller
             $user_data['role']='Mahasiswa';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
-            return redirect()->route('User');
+            return redirect()->route('user.index');
     }
     public function storeadmin(Request $request)
     {
@@ -67,7 +67,7 @@ class UserController extends Controller
             $user_data['role']='Administrator';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
-            return redirect()->route('User');
+            return redirect()->route('user.index');
     }
 
 

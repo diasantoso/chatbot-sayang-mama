@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
@@ -44,29 +44,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
               $user_data = $request->except('_token');
         if($request->hasFile('image')) {
-            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());   
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());
         }
           $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
             $user_data['role']='Mahasiswa';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
-            return redirect()->route('User');
+            return redirect()->route('user.index');
     }
     public function storeadmin(Request $request)
     {
-       
+
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
-            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());   
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());
+             $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
         }
-          $user_data['image'] = $request->file('FOTO')->getClientOriginalName();
+           
             $user_data['role']='Administrator';
             $user_data['registerdate']=Carbon::now();
             User::create($user_data);
-            return redirect()->route('User');
+            return redirect()->route('user.index');
     }
 
 
@@ -99,27 +100,50 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
-    
-        $updated_by=Auth::Users()->id;
+
+        $updated_by=Auth::User()->id;
 
         $user_data = $request->except('_token');
         if($request->hasFile('image')) {
             $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());
             $user_data['image'] = $request->file('image')->getClientOriginalName();
-            DB::table('user')
+            DB::table('users')
             ->where('id',$user_data['id'])
-            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id]);
+            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id]);
          return redirect()->route('User');
         }
         else {
        DB::table('users')
             ->where('id',$user_data['id'])
-            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => $updated_by]);
+            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => $updated_by]);
         }
+         return redirect()->route('user.index');
+
+    }
+    public function updateadmin(Request $request)
+    {
+
+
+        $updated_by=Auth::User()->id;
+
+        $user_data = $request->except('_token');
+        if($request->hasFile('image')) {
+            $request->file('image')->move('uploads/ProfilePicture', $request->file('image')->getClientOriginalName());
+            $user_data['image'] = $request->file('image')->getClientOriginalName();
+            DB::table('users')
+            ->where('id',$user_data['id'])
+            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'image' => $user_data['image'],'updated_by' => Auth::User()->id]);
          return redirect()->route('User');
+        }
+        else {
+       DB::table('users')
+            ->where('id',$user_data['id'])
+            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'updated_by' => $updated_by]);
+        }
+         return redirect()->route('user.index');
 
     }
 
@@ -134,13 +158,13 @@ class UserController extends Controller
 
         $deleted_at=Carbon::now();
         $deleted_by=Auth::User()->id;
-       
+
         DB::table('users')
             ->where('id',$id)
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
-            return redirect()->route('user.delete');
+            return redirect()->route('user.index');
     }
 
-    
+
 
 }

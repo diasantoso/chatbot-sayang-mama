@@ -51,7 +51,11 @@
                                     <td valign="middle">{{ $semuaMakul->created_at }}</td>
                                     <td valign="middle">{{ $semuaMakul->createdBy->fullname }}</td>
                                     <td valign="middle">{{ $semuaMakul->updated_at }}</td>
-                                    <td valign="middle">{{ $semuaMakul->updatedBy->fullname }}</td>
+                                    @if($semuaMakul->updated_by == NULL)
+                                    <td align="center" valign="middle"> - </td>
+                                    @else
+                                    <td valign="middle"> {{ $semuaMakul->updatedBy->fullname }}</td>
+                                    @endif
                                     <td valign="middle">
                                       <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
                                       data-id="{{ $semuaMakul->id }}"

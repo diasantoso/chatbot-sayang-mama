@@ -27,7 +27,7 @@ class FakultasController extends Controller
     {
         //
         $semuaFakultas = Fakultas::all();
-        return view('front.fakultas.index', compact('semuaFakultas'));
+        return view('admin.fakultas', compact('semuaFakultas'));
     }
 
     /**
@@ -38,7 +38,7 @@ class FakultasController extends Controller
     public function create()
     {
         //
-        return view('front.fakultas.create');
+        return view('admin.fakultas');
     }
 
     /**
@@ -47,7 +47,7 @@ class FakultasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($input)
     {
         //
         DB::beginTransaction();
@@ -117,9 +117,28 @@ class FakultasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id,$input)
     {
         //
+        DB::beginTransaction();
+
+        try{
+            $fakultas_dataBaru['nama'] = $input;
+            $fakultas_dataBaru['updated_by'] = Auth::user()->id;
+
+            $fakultas = Fakultas::find($id);
+
+            $fakultas->update($fakultas_dataBaru);
+
+            DB::commit();
+
+            alert()->success('Data berhasil di edit', 'Edit Berhasil!');
+            return redirect()->route('fakultas.index');
+        }catch(\Exception $e){
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
     /**

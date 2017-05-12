@@ -619,7 +619,7 @@ class BotController extends Controller
     $check = User::select('id')->where([
       ['email', 'LIKE', $email]
       ])->first();
-    $checkCount = $check->count();
+     $checkCount = $check->count();
 
     if($checkCount != 0) {
       $user_data = User::find($check->id);
@@ -635,7 +635,7 @@ class BotController extends Controller
 
           try {
             $user_data->chat_log_line_id = $chat_log_data->id;
-            return $chat_log_data->user_id = $user_data->id;
+            $chat_log_data->user_id = $user_data->id;
 
             $user_data->save();
             $chat_log_data->save();

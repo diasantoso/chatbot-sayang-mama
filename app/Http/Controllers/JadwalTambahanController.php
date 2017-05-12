@@ -66,23 +66,15 @@ class JadwalTambahanController extends Controller
     }
   }
 
-  public function update(Request $request, $id) {
+  public function update(Request $request) {
     $jadwalTambahan_data = $request->except("_token");
-
-    $this->validate($request, [
-        'nama' => 'required',
-        'makul_id' => 'required',
-        'keyword' => 'required',
-        'type' => 'required',
-    ]);
-
-    $jadwalTambahan = Jadwal_Tambahan::find($id);
+    $jadwalTambahan = Jadwal_Tambahan::find($request['id']);
 
     DB::beginTransaction();
 
     try{
       $jadwal_data['updated_by'] = Auth::User()->id;
-      $jadwal->update($jadwalTambahan_data);
+      $jadwalTambahan->update($jadwalTambahan_data);
 
       DB::commit();
 

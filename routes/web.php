@@ -106,7 +106,7 @@ Route::get('jadwalTambahan-index', 'JadwalTambahanController@index')->name('jadw
 Route::get('jadwalTambahan-create', 'JadwalTambahanController@create')->name('jadwalTambahan.create');
 Route::post('jadwalTambahan-store', 'JadwalTambahanController@store')->name('jadwalTambahan.store');
 Route::get('jadwalTambahan-edit/{id}', 'JadwalTambahanController@edit')->name('jadwalTambahan.edit');
-Route::patch('jadwalTambahan-update/{id}', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
+Route::patch('jadwalTambahan-update', 'JadwalTambahanController@update')->name('jadwalTambahan.update');
 Route::get('jadwalTambahan-delete/{id}', 'JadwalTambahanController@destroy')->name('jadwalTambahan.destroy');
 
 //Profil

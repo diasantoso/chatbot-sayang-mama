@@ -28,12 +28,12 @@
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX---------------------------> -->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2> Tabel User <small>Daftar sesi yang telah dimasukkan</small></h2>
+                              <h2> Tabel Sesi <small>Daftar sesi yang telah dimasukkan</small></h2>
                               <ul class="nav navbar-right panel_toolbox">
-                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah User Baru</a>
+                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Sesi Baru</a>
                               </ul>
                               <div class="clearfix"></div>
                             </div>
@@ -224,7 +224,7 @@
       </div>
       </div>
 
-      
+
       <!-- /page content -->
 
 @endsection

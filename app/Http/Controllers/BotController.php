@@ -391,7 +391,7 @@ class BotController extends Controller
           $replyToken = $event['replyToken'];
 
           //To save chat log
-          // $this->getUser($userId);
+          $this->getUser($userId);
 
           $textReceived = $event['message']['text'];
           $helpCommand = "Halo, berikut perintah-perintah yang dapat digunakan di ChatBot : " . PHP_EOL .
@@ -400,11 +400,11 @@ class BotController extends Controller
           "logout : Untuk keluar dari akun yang sedang anda gunakan pada platform chat". PHP_EOL .
           PHP_EOL . "Jika anda belum pernah melakukan login sebelumnya, maka anda perlu login terlebih dahulu di platform chat dengan mengetikkan email dan password anda dengan format :". PHP_EOL ."email-password". PHP_EOL ."contoh : asd@gmail.com-asdfghj";
 
-          // if($this->checkLogin($userId) == true) {
-            // $checkMakulResult = $this->checkMakul($userId, $textReceived);
-            // if($checkMakulResult != false) {
-            //   $textSend = $checkMakulResult;
-            // } else {
+          if($this->checkLogin($userId) == true) {
+            $checkMakulResult = $this->checkMakul($userId, $textReceived);
+            if($checkMakulResult != false) {
+              $textSend = $checkMakulResult;
+            } else {
               if(strcasecmp($textReceived, "halo")==0) {
                 $opts = array(
                   'http'=>array(
@@ -437,38 +437,38 @@ class BotController extends Controller
               } else {
                 $textSend = "Maaf perintah tidak ditemukan.";
               }
-            // }
+            }
 
-          // } else if(strcasecmp($textReceived, "help")==0) {
-          //   $textSend = $helpCommand;
-          // } else {
-          //   if (($check = strpos($textReceived, "-")) !== FALSE) {
-          //     $email = strtok($textReceived, '-');
-          //     $password = substr($textReceived, strpos($textReceived, "-") +1);
-          //
-          //     if($this->checkEmail($email) == true) {
-          //       if($this->checkPassword($userId, $email, $password)== true ) {
-          //         $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
-          //       } else {
-          //         $textSend = "Maaf email atau password anda salah". PHP_EOL .
-          //         "atau anda belum terdaftar". PHP_EOL .
-          //         "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-          //         "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-          //       }
-          //     } else {
-          //       $textSend = "Maaf email atau password anda salah". PHP_EOL .
-          //       "atau anda belum terdaftar". PHP_EOL .
-          //       "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
-          //       "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-          //     }
-          //   } else {
-          //     $textSend = "Maaf anda perlu login terlebih dahulu".PHP_EOL.
-          //     "silahkan kirimkan chat email dan password yang sudah anda daftarkan di ". PHP_EOL .$registerUrl. PHP_EOL .
-          //     "dengan format : email-password". PHP_EOL .
-          //     "contoh: asdf@gmail.com-1234 " . PHP_EOL .
-          //     "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
-          //   }
-          // }
+          } else if(strcasecmp($textReceived, "help")==0) {
+            $textSend = $helpCommand;
+          } else {
+            if (($check = strpos($textReceived, "-")) !== FALSE) {
+              $email = strtok($textReceived, '-');
+              $password = substr($textReceived, strpos($textReceived, "-") +1);
+
+              if($this->checkEmail($email) == true) {
+                if($this->checkPassword($userId, $email, $password)== true ) {
+                  $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
+                } else {
+                  $textSend = "Maaf email atau password anda salah". PHP_EOL .
+                  "atau anda belum terdaftar". PHP_EOL .
+                  "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
+                  "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+                }
+              } else {
+                $textSend = "Maaf email atau password anda salah". PHP_EOL .
+                "atau anda belum terdaftar". PHP_EOL .
+                "jika anda belum mendaftar, silahkan daftarkan diri anda di : ". PHP_EOL .$registerUrl . PHP_EOL .
+                "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+              }
+            } else {
+              $textSend = "Maaf anda perlu login terlebih dahulu".PHP_EOL.
+              "silahkan kirimkan chat email dan password yang sudah anda daftarkan di ". PHP_EOL .$registerUrl. PHP_EOL .
+              "dengan format : email-password". PHP_EOL .
+              "contoh: asdf@gmail.com-1234 " . PHP_EOL .
+              "Jika anda kesulitan, silahkan gunakan perintah 'help' ";
+            }
+          }
 
           $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
           $result = $bot->pushMessage($userId, $textMessageBuilder);
@@ -555,11 +555,10 @@ class BotController extends Controller
   }
 
   public function checkLogin($userId) {
-    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->get();
+    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
     $checkCount = $check->count();
-
     if($checkCount == 1) {
-      $chatLog = Chat_Log_line::find($check);
+      $chatLog = Chat_Log_line::find($check->id);
 
       if($chatLog->user_id == 0) {
         return false;
@@ -627,8 +626,8 @@ class BotController extends Controller
   }
 
   public function getJadwalKuliah($userId) {
-    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->get();
-    $chatLog = Chat_Log_line::find($check);
+    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
+    $chatLog = Chat_Log_line::find($check->id);
 
     $semuaJadwal = $chatLog->user->jadwal;
 
@@ -697,7 +696,7 @@ class BotController extends Controller
         $sabtu = "KOSONG" . PHP_EOL . PHP_EOL;
       }
 
-      $text = "--===Senin===--" . PHP_EOL . $senin . "--===Selasa===--" . PHP_EOL . $selasa . "--===Rabu===--" . PHP_EOL . $rabu . "--===Kamis===--" . PHP_EOL . $kamis . "--===Jumat===--" . PHP_EOL . $jumat;
+      $text = "--===Senin===--" . PHP_EOL . $senin . "--===Selasa===--" . PHP_EOL . $selasa . "--===Rabu===--" . PHP_EOL . $rabu . "--===Kamis===--" . PHP_EOL . $kamis . "--===Jumat===--" . PHP_EOL . $jumat . "--===Sabtu===--" . PHP_EOL . $sabtu;
 
       return $text;
     } else {
@@ -707,8 +706,8 @@ class BotController extends Controller
   }
 
   public function getJadwalTambahan($userId) {
-    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->get();
-    $chatLog = Chat_Log_line::find($check);
+    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
+    $chatLog = Chat_Log_line::find($check->id);
 
     $semuaJadwal = $chatLog->user->jadwalTambahan;
 
@@ -764,8 +763,8 @@ class BotController extends Controller
   }
 
   public function checkMakul($userId, $textReceived) {
-    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->get();
-    $chatLog = Chat_Log_line::find($check);
+    $check = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
+    $chatLog = Chat_Log_line::find($check->id);
 
     $semuaJadwal = $chatLog->user->jadwal;
     $semuaJadwalTambahan = $chatLog->user->jadwalTambahan;
@@ -815,8 +814,8 @@ class BotController extends Controller
 
         $header = "Nama ". $jenis ." : " . $nama;
         $header2 = "Mata Kuliah : " . $makul;
-        $middle = "Ruangan : " . $ruangan;
-        $bottom = "Sesi : " . $sesiMulai;
+        $middle = "Waktu Mulai : " . $waktuMulai;
+        $bottom = "Waktu Selesai : " . $waktuSelesai;
         $summary = $header . PHP_EOL . $header2 . PHP_EOL . $middle . PHP_EOL . $bottom . PHP_EOL . PHP_EOL;
 
         $text = "--===".$jenis."===--". PHP_EOL . $summary;

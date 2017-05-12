@@ -15,16 +15,16 @@ class Sesi extends Model
     ];
 
     public function prodis() {
-      $this->belongsToMany('App\Prodi');
+      return $this->belongsToMany('App\Prodi');
     }
 
     public function createdBy() {
-      $this->belongsTo('App\User', 'created_by');
+      return $this->belongsTo('App\User', 'created_by');
     }
     public function updatedBy() {
-      $this->belongsTo('App\User', 'updated_by');
+      return $this->belongsTo('App\User', 'updated_by');
     }
     public function deletedBy() {
-      $this->belongsTo('App\User', 'deleted_by');
+      return $this->belongsTo('App\User', 'deleted_by');
     }
 }

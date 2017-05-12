@@ -15,16 +15,16 @@ class Chat_Log_line extends Model
     ];
 
     public function user() {
-      $this->hasOne('App\User', 'user_id');
+      return $this->hasOne('App\User', 'user_id');
     }
 
     public function createdBy() {
-      $this->belongsTo('App\User', 'created_by');
+      return $this->belongsTo('App\User', 'created_by');
     }
     public function updatedBy() {
-      $this->belongsTo('App\User', 'updated_by');
+      return $this->belongsTo('App\User', 'updated_by');
     }
     public function deletedBy() {
-      $this->belongsTo('App\User', 'deleted_by');
+      return $this->belongsTo('App\User', 'deleted_by');
     }
 }

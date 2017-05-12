@@ -31,12 +31,12 @@ class Jadwal extends Model
     }
 
     public function createdBy() {
-      $this->belongsTo('App\User', 'created_by');
+      return $this->belongsTo('App\User', 'created_by');
     }
     public function updatedBy() {
-      $this->belongsTo('App\User', 'updated_by');
+      return $this->belongsTo('App\User', 'updated_by');
     }
     public function deletedBy() {
-      $this->belongsTo('App\User', 'deleted_by');
+      return $this->belongsTo('App\User', 'deleted_by');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Prodi;
+use DB;
 use App\Fakultas;
 use Carbon\Carbon;
 class ProdiController extends Controller
@@ -30,8 +31,7 @@ class ProdiController extends Controller
      */
     public function create()
     {
-      $fakultas = Fakultas::all();
-      return view('admin.prodi.create', compact('fakultas'));
+      //
     }
 
     /**
@@ -47,7 +47,7 @@ class ProdiController extends Controller
         $prodi_data = $request->except('_token');
         $prodi_data['created_by']=$created_by;
         Prodi::create($prodi_data);
-        return redirect()->route('Prodi.index');
+        return redirect()->route('prodi.index');
     }
 
     /**
@@ -88,7 +88,7 @@ class ProdiController extends Controller
         DB::table('prodi')
             ->where('id',$id)
             ->update(['fakultas_id' => $prodi_data['fakultas_id'],'nama' =>$prodi_data['nama'],'updated_by' => $updated_by]);
-         return redirect()->route('Prodi.index');
+         return redirect()->route('prodi.index');
     }
 
     /**
@@ -105,6 +105,6 @@ class ProdiController extends Controller
         DB::table('prodi')
             ->where('id',$id)
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
-            return redirect()->route('Prodi.index');
+            return redirect()->route('prodi.index');
     }
 }

@@ -50,8 +50,11 @@
                                     <td valign="middle" >{{ $prodis->fakultas->nama }}</td>
                                     <td valign="middle">
                                       <a id="edit-btn" class="btn btn-warning btn-xs edit_button" data-toggle="modal"
+                                      data-id="{{ $prodis->id }}"
+                                      data-name="{{ $prodis->nama }}"
+                                      data-fakultas="{{ $prodis->fakultas->nama }}"
                                       data-target="#myModalUpdate"><span class="fa fa-pencil-square-o"></span> Edit</a>
-                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="#" href="#"><span class="fa fa-trash"></span> Hapus</a>
+                                      <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('prodi.delete', $prodis->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
                                   @endif
@@ -74,6 +77,90 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal Add -->
+      <div class="modal fade" id="myModalAdd" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tambah Prodi Baru</h4>
+        </div>
+        <div class="modal-body">
+          <form name="formCreateProdi" action="{{ route('prodi.store') }}" class="form-horizontal" method="post">
+            {{ csrf_field() }}
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Nama Prodi :</label>
+            <div class="col-sm-8">
+              <input type="text" name="nama" class="form-control" style="width:200px;"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Nama Fakultas :</label>
+            <div class="col-sm-8">
+              <select class="select2_single form-control" required="" name="fakultas_id">
+                  @foreach($fakultas as $semuaFakultas)
+                    @if($semuaFakultas->deleted_at == NULL)
+                      <option value="{{ $semuaFakultas->id }}">{{ $semuaFakultas->nama }}</option>
+                    @endif
+                  @endforeach
+                </select>
+            </div>
+          </div>
+          <div class="form-group modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+          </form>
+        </div>
+        </div>
+
+      </div>
+      </div>
+
+      <!-- Modal Update -->
+    <div class="modal fade" id="myModalUpdate" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Prodi</h4>
+      </div>
+      <div class="modal-body">
+        <form name="formUpdateProdi" action="{{ route('prodi.update') }}" class="form-horizontal" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="_method" value="PATCH">
+          <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Nama Prodi :</label>
+          <div class="col-sm-8">
+            <input type="text" name="nama" class="form-control nama" style="width:200px;"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Nama Fakultas :</label>
+          <div class="col-sm-8">
+            <select class="select2_single form-control fakultas" required="" name="fakultas_id">
+                @foreach($fakultas as $semuaFakultas)
+                  @if($semuaFakultas->deleted_at == NULL)
+                    <option value="{{ $semuaFakultas->id }}">{{ $semuaFakultas->nama }}</option>
+                  @endif
+                @endforeach
+              </select>
+          </div>
+        </div>
+        <div class="form-group modal-footer">
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+        </form>
+      </div>
+      </div>
+
+    </div>
+    </div>
 
 <!-- /page content -->
 
@@ -140,12 +227,10 @@
 
         var id = $(this).data('id');
         $(".id").val(id);
-        var fullname = $(this).data('fullname');
-        $(".fullname").val(fullname);
-        var npm = $(this).data('npm');
-        $(".npm").val(npm);
-        var email = $(this).data('email');
-        $(".email").val(email);
+        var nama = $(this).data('nama');
+        $(".nama").val(nama);
+        var fakultas = $(this).data('fakultas');
+        $(".fakultas").val(fakultas);
 
     });
     </script>

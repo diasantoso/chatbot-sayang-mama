@@ -456,7 +456,7 @@ class BotController extends Controller
               $password = substr($textReceived, strpos($textReceived, "-") +1);
 
               if($this->checkEmail($email) == true) {
-                if($this->checkPassword($userId, $email, $password) == "true" ) {
+                if($this->checkPassword($userId, $email, $password) == "false" ) {
                   $textSend = "Selamat anda berhasil login, sekarang anda sudah bisa menggunakan fitur kuliah ChatBot";
                 } else {
                   $textSend = $this->checkPassword($userId, $email, $password);
@@ -615,14 +615,15 @@ class BotController extends Controller
 
             $user_data->save();
             $chat_log_data->save();
-
+            return "true";
             DB::commit();
 
           } catch (\Exception $e) {
             DB::rollback();
+            return "true1";
             throw $e;
           }
-          return "true";
+
 
         } else {
           return "false";

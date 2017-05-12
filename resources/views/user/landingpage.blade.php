@@ -63,7 +63,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">Pengingat untuk Agenda Perkuliahan</h1>
+                <h1 id="homeHeading">Pengingat untuk Agenda Perkuliahan dengan LINE MESSENGER</h1>
                 <hr>
                 <p>Dikembangkan oleh Tim Sayang Mama, UAJY 2017</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Cek Lebih Lanjut</a>
@@ -77,7 +77,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Apa itu ChatBot Reminder?</h2>
                     <hr class="light">
-                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan, meliputi jadwal, kuis dan tugas kuliah.<br/><br/><br/></p>
+                    <p class="text-faded"><strong>CHATBOT REMINDER </strong>sebuah alat pengingat agenda perkuliahan meliputi jadwal, kuis dan tugas kuliah dengan memanfaatkan teknologi LINE MESSENGER<br/><br/><br/></p>
                     <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Memulai!</a>
                 </div>
             </div>

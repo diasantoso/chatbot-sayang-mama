@@ -15,7 +15,7 @@ class Sesi extends Model
     ];
 
     public function jadwalMulai() {
-      return $this->hasMany('App\Jadwal', 'sesi_mulai');
+      return $this->hasMany('App\Jadwal','sesi_mulai');
     }
 
     public function jadwalSelesai() {

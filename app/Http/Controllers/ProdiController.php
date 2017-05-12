@@ -111,4 +111,26 @@ class ProdiController extends Controller
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
             return redirect()->route('prodi.index');
     }
+
+    public function terhapusRestore($id)
+  {
+    DB::beginTransaction();
+
+    try{
+        $prodi = Prodi::find($id);
+        $prodi->deleted_at = NULL;
+        $prodi->deleted_by = NULL;
+        $prodi->updated_by = Auth::user()->id;
+        $prodi->save();
+
+        DB::commit();
+
+        alert()->success('Data berhasil di kembalikan', 'Pemulihan Berhasil!');
+        return redirect()->route('prodi.index');
+    }catch(\Exception $e){
+        DB::rollback();
+
+        throw $e;
+    }
+  }
 }

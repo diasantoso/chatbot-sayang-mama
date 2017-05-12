@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2017 at 03:15 PM
+-- Generation Time: May 12, 2017 at 07:42 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -51,6 +51,13 @@ CREATE TABLE `fakultas` (
   `updated_by` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fakultas`
+--
+
+INSERT INTO `fakultas` (`id`, `nama`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(1, 'FTI', '2017-05-12 16:44:36', '2017-05-12 16:44:36', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -134,6 +141,13 @@ CREATE TABLE `prodi` (
   `updated_by` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prodi`
+--
+
+INSERT INTO `prodi` (`id`, `fakultas_id`, `nama`, `created_at`, `updated_at`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(1, 1, 'TF', '2017-05-12 09:44:44', '2017-05-12 09:44:46', NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,7 +294,7 @@ ALTER TABLE `chat_log_line`
 -- AUTO_INCREMENT for table `fakultas`
 --
 ALTER TABLE `fakultas`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
@@ -300,7 +314,7 @@ ALTER TABLE `makul`
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `prodi_sesi`
 --

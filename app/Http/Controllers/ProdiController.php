@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Prodi;
 use Carbon\Carbon;
-class UserController extends Controller
+class ProdiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-          $users = User::all();
-          return view('user-index', compact('users'));
+          $prodis = Prodi::all();
+          return view('prodi-index', compact('prodis'));
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**
@@ -38,9 +38,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user_data = $request->except('_token');
-        User::create($user_data);
-        return redirect()->route('User.index');
+      
+        $created_by=Auth::User()->id;
+        $prodi_data = $request->except('_token');
+        $prodi_data['created_by']=$created_by;
+        Prodi::create($prodi_data);
+        return redirect()->route('Prodi.index');
     }
 
     /**
@@ -72,28 +75,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-
-    
+     
         $updated_by=Auth::User()->id;
 
-        $user_data = $request->except('_token');
-        if($request->hasFile('FOTO')) {
-            $request->file('FOTO')->move('FOTO', $request->file('FOTO')->getClientOriginalName());
-            $user_data['FOTO'] = $request->file('FOTO')->getClientOriginalName();
-            DB::table('user')
-            ->where('id',$user_data['id'])
-            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id;]);
-         return redirect()->route('pegawai.index');
-        }
-        else {
-       DB::table('user')
-            ->where('id',$user_data['id'])
-            ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => $updated_by]);
-        }
-         return redirect()->route('User.index');
-
+        $prodi_data = $request->except('_token');
+        DB::table('prodi')
+            ->where('id',$id)
+            ->update(['fakultas_id' => $prodi_data['fakultas_id'],'nama' =>$prodi_data['nama'],'updated_by' => $updated_by]);
+         return redirect()->route('Prodi.index');
     }
 
     /**
@@ -104,13 +95,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-
         $deleted_at=Carbon::now();
         $deleted_by=Auth::User()->id;
        
-        DB::table('user')
+        DB::table('prodi')
             ->where('id',$id)
             ->update(['deleted_by'=>$deleted_by,'deleted_at'=>$deleted_at]);
-            return redirect()->route('User.index');
+            return redirect()->route('Prodi.index');
     }
 }

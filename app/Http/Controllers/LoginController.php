@@ -13,15 +13,15 @@ class LoginController extends Controller
      public function index()
     {
     	  $semuaProdi = Prodi::all();
-          $semuaFakultas = Fakultas::all();
-          return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
+        $semuaFakultas = Fakultas::all();
+        return view('loginregister.login', compact('users','semuaFakultas','semuaProdi'));
     }
      public function admindashboard()
     {
-    	  $totalUser = User::all()->count();
-    	  $totalProdi = Prodi::all()->count();
-          $totalFakultas = Fakultas::all()->count();
-          $totalSesi = Sesi::all()->count();
+    	  $totalUser = User::all()->where('deleted_at','=' ,NULL)->count();
+    	  $totalProdi = Prodi::all()->where('deleted_at','=' ,NULL)->count();
+          $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
+          $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
           return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
     }
 
@@ -35,10 +35,10 @@ class LoginController extends Controller
         // attempt to do the login
            if (Auth::attempt(['email' => $email, 'password' => $password],true))
             {
-                
+
                 return redirect('admindashboard');
-            } 
-            else {        
+            }
+            else {
 
                echo "fail";
 

@@ -52,8 +52,8 @@ class SendReminder extends Command
       $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textSend);
       $result = $bot->pushMessage($userId, $textMessageBuilder);
 
-      $this->info('The messages were sent successfully ululululu!');
-
       return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+
+      $this->info('The messages were sent successfully ululululu!');
     }
 }

@@ -28,7 +28,7 @@
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                          <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX---------------------------> -->
                           <div class="x_panel">
                             <div class="x_title">
                               <h2> Tabel Sesi <small>Daftar sesi yang telah dimasukkan</small></h2>
@@ -89,7 +89,7 @@
                         <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
 
 
-                          <!-------------------------------------------------------------------ARTIKEL TERHAPUS INDEX--------------------------->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL TERHAPUS INDEX---------------------------> -->
                           <div class="x_panel">
                             <div class="x_title">
                               <h2> Tabel Sesi Terhapus <small>Daftar sesi yang telah dihapus</small></h2>

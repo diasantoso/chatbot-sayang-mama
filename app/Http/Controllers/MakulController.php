@@ -183,7 +183,7 @@ class MakulController extends Controller
         throw $e;
       }
     }
-/*
+
     public function terhapusRestore($id)
     {
       DB::beginTransaction();
@@ -205,6 +205,6 @@ class MakulController extends Controller
           throw $e;
       }
     }
-    */
+    
 
 }

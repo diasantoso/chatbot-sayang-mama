@@ -38,10 +38,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $user_data['role']='Mahasiswa';
         $user_data = $request->except('_token');
         User::create($user_data);
         return redirect()->route('User.index');
     }
+    public function storeadmin(Request $request)
+    {
+        $user_data['role']='Administrator';
+        $user_data = $request->except('_token');
+        User::create($user_data);
+        return redirect()->route('User.index');
+    }
+
 
     /**
      * Display the specified resource.

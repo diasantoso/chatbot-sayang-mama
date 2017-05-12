@@ -117,7 +117,8 @@
 
             <form action="{{ route('doLogin') }}" method="post">
               {{ csrf_field() }}
-              <h1>ChatBot Reminder Login</h1>
+              <h2>CHATBOT REMINDER</h2>
+              <h1>Login</h1>
               <div>
                 <input type="email" name="email" class="form-control" placeholder="Email" required="" />
               </div>
@@ -142,7 +143,7 @@
 
             <button type="submit" class="btn btn-default submit" >Log in</button>
 
-           
+
             </form>
           </section>
         </div>

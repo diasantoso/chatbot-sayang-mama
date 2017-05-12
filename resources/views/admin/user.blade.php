@@ -7,7 +7,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3> Data User </h3>
+                <h3> Data Admin </h3>
               </div>
             </div>
 
@@ -19,17 +19,15 @@
                 <div class="x_content">
 
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab1" class="nav nav-tabs bar_tabs left" role="tablist">
-                      </ul>
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX---------------------------> -->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
                           <div class="x_panel">
                             <div class="x_title">
-                              <h2> Tabel User <small>Daftar user yang telah dimasukkan</small></h2>
+                              <h2> Tabel Admin <small>Daftar admin yang telah dimasukkan</small></h2>
                               <ul class="nav navbar-right panel_toolbox">
-                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah User Baru</a>
+                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Admin Baru</a>
                               </ul>
                               <div class="clearfix"></div>
                             </div>
@@ -37,10 +35,10 @@
                               <table id="tabel-user" class="table table-striped table-bordered">
                                 <thead>
                                   <tr>
-                                    <th align="center">Full Name</th>
+                                    <th align="center">Nama</th>
                                     <th align="center">NPM</th>
                                     <th align="center">Email</th>
-                                    <th align="center">Image</th>
+                                    <th align="center">Foto</th>
                                     <th align="center">Aksi</th>
                                   </tr>
                                 </thead>
@@ -91,13 +89,13 @@
 			  <div class="modal-content">
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
-				  <h4 class="modal-title">Add New User</h4>
+				  <h4 class="modal-title">Tambah Admin Baru</h4>
 				</div>
 				<div class="modal-body">
 				  <form name="formCreateUser" action="{{ route('admin.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Full Name :</label>
+						<label class="col-sm-3 control-label">Nama :</label>
 						<div class="col-sm-8">
 							<input type="text" required="required" name="fullname" class="form-control" style="width:200px;"/>
 						</div>
@@ -125,9 +123,9 @@
                         <div class="col-sm-8">
                         <input type="file" name="image" class="form-control" accept="image/*">
                         </div>
-          </div> 
+          </div>
 					<div class="form-group modal-footer">
-						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="submit" class="btn btn-primary">Simpan</button>
 					</div>
 				  </form>
 				</div>
@@ -144,7 +142,7 @@
       <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Update User</h4>
+        <h4 class="modal-title">Ubah Admin</h4>
       </div>
       <div class="modal-body">
         <form name="formUpdateUser" action="{{ route('user.updateadmin') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
@@ -152,7 +150,7 @@
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
         <div class="form-group">
-          <label class="col-sm-3 control-label">Full Name :</label>
+          <label class="col-sm-3 control-label">Nama :</label>
           <div class="col-sm-8">
             <input type="text" name="fullname" required="required" class="form-control fullname" style="width:200px;"/>
           </div>
@@ -174,9 +172,9 @@
                         <div class="col-sm-8">
                         <input type="file" name="image" class="form-control" accept="image/*">
                         </div>
-        </div> 
+        </div>
         <div class="form-group modal-footer">
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
         </form>
       </div>

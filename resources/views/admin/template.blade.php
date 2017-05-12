@@ -104,12 +104,8 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              @if(strcasecmp(Auth::User()->role,'admin')==0)
-              <a href="{{ route('dashboard.admin') }}" class="site_title"><i class="fa fa-user-md"></i>
-              @elseif(strcasecmp(Auth::User()->role,'mahasiswa')==0)
-              <a href="{{ route('dashboard.mahasiswa') }}" class="site_title"><i class="fa fa-user-md"></i>
-              @endif
-                <span>{{ Auth::User()->role }}</span>
+              <a href="{{ route('admindashboard') }}" class="site_title"><i class="fa fa-user-md"></i>
+                <span>Reminder</span>
               </a>
             </div>
 

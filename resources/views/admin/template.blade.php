@@ -109,7 +109,7 @@
               @elseif(strcasecmp(Auth::User()->role,'mahasiswa')==0)
               <a href="{{ route('dashboard.mahasiswa') }}" class="site_title"><i class="fa fa-user-md"></i>
               @endif
-                <span>{{ Auth::User()->role }}</span>
+                <span>Reminder</span>
               </a>
             </div>
 

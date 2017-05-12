@@ -48,7 +48,7 @@ class UserController extends Controller
         $user_data = $request->except('_token');
         $user_data['role']='Mahasiswa';
         User::create($user_data);
-        return redirect()->route('User.index');
+        return redirect()->route('User');
     }
     public function storeadmin(Request $request)
     {
@@ -57,7 +57,7 @@ class UserController extends Controller
         $user_data['role']='Administrator';
         $user_data['registerdate']=Carbon::now();
         User::create($user_data);
-        return redirect()->route('User.index');
+        return redirect()->route('User');
     }
 
 
@@ -103,14 +103,14 @@ class UserController extends Controller
             DB::table('user')
             ->where('id',$user_data['id'])
             ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'image' => $user_data['image'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => Auth::User()->id]);
-         return redirect()->route('pegawai.index');
+         return redirect()->route('User');
         }
         else {
        DB::table('users')
             ->where('id',$user_data['id'])
             ->update(['fullname' => $user_data['fullname'],'npm' => $user_data['npm'],'email' => $user_data['email'],'password' => $user_data['password'],'prodi_id' => $user_data['prodi_id'],'fakultas_id' => $user_data['fakultas_id'],'updated_by' => $updated_by]);
         }
-         return redirect()->route('User.index');
+         return redirect()->route('User');
 
     }
 

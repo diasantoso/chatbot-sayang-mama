@@ -401,10 +401,10 @@ class BotController extends Controller
           PHP_EOL . "Jika anda belum pernah melakukan login sebelumnya, maka anda perlu login terlebih dahulu di platform chat dengan mengetikkan email dan password anda dengan format :". PHP_EOL ."email-password". PHP_EOL ."contoh : asd@gmail.com-asdfghj";
 
           if($this->checkLogin($userId) == true) {
-            $checkMakulResult = $this->checkMakul($userId, $textReceived);
-            if($checkMakulResult != false) {
-              $textSend = $checkMakulResult;
-            } else {
+            // $checkMakulResult = $this->checkMakul($userId, $textReceived);
+            // if($checkMakulResult != false) {
+            //   $textSend = $checkMakulResult;
+            // } else {
               if(strcasecmp($textReceived, "halo")==0) {
                 $opts = array(
                   'http'=>array(
@@ -437,7 +437,7 @@ class BotController extends Controller
               } else {
                 $textSend = "Maaf perintah tidak ditemukan.";
               }
-            }
+            // }
 
           } else if(strcasecmp($textReceived, "help")==0) {
             $textSend = $helpCommand;

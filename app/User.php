@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
     protected $fillable = [
-        'id','chat_log_line_id','chat_id','jangka_reminder','fullname','npm','email','role','password','lupa_pass','status','image','prodi_id','registerdate','created_at','updated_at','deleted_at',
+        'id','chat_log_line_id','fullname','npm','email','role','password','lupa_pass','status','image','prodi_id','registerdate','created_at','updated_at','deleted_at',
 						'updated_by',
             'deleted_by',
     ];

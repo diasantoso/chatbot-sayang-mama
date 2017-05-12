@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Users;
+use App\User;
 use App\Prodi;
 use App\Fakultas;
 use Carbon\Carbon;
@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         //
-          $users = Users::all();
+          $users = User::all();
           $prodi = Prodi::all();
           $fakultas = Fakultas::all();
           return view('admin.user', compact('users','fakultas','prodi'));
@@ -129,32 +129,6 @@ class UserController extends Controller
             return redirect()->route('User.index');
     }
 
-    public function doLogin(Request $request)
-    {
-
-
-        $userdata = $request;
-        $email=$userdata->email;
-        $password=$userdata->password;
-        // attempt to do the login
-           if (Auth::attempt(['email' => $email, 'password' => $password],true))
-            {
-                
-                
-            } 
-            else {        
-
-               
-
-            }
-
-
-    }
-
-    public function doLogout()
-    {
-      Auth::logout();
-      return redirect('/');
-    }
+    
 
 }

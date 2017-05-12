@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('user/landingpage');
 });
 
+Route::get('dashboard.admin', function () {
+
+    return view('dashboard');
+    })->name('dashboard.admin');
+
+Route::get('dashboard.mahasiswa', function () {
+
+    })->name('dashboard.mahasiswa');
 
 
 
@@ -24,8 +32,7 @@ Route::post('User.store', 'UserController@store')->name('user.store');
 Route::post('Admin.store', 'UserController@storeadmin')->name('admin.store');
 Route::patch('User.update', 'PegawaiController@update')->name('user.update');
 Route::get('User.delete/{id}', 'UserController@destroy')->name('user.delete');
-Route::post('doLogin', 'UserController@doLogin')->name('doLogin');
-Route::post('doLogout', 'UserController@doLogout')->name('doLogout');
+
 
 //prodi
 
@@ -68,4 +75,5 @@ Route::get('fakultasTerhapus-destroy/{id}', 'FakultasController@terhapusDestroy'
 
 //login
 Route::get('login.index', 'LoginController@index')->name('login.index');
-
+Route::post('doLogin', 'LoginController@doLogin')->name('doLogin');
+Route::post('doLogout', 'LoginController@doLogout')->name('doLogout');

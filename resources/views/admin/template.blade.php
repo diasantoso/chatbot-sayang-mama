@@ -142,17 +142,17 @@
                 <h3 style="margin-top:85px">Pengelolaan</h3>
                 <ul class="nav side-menu">
                   @if(strcasecmp(Auth::User()->role,'admin')==0)
-                  <li><a href="{{ Route('dashboard.admin') }}"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
+                  <li><a href="#"><i class="fa fa-tachometer"></i> Dashboard Admin </a></li>
                   @endif
                   <!-- <li><a href="{{ Route('dashboard.mahasiswa') }}"><i class="fa fa-desktop"></i> Dashboard</a></li> -->
-                  <li><a href="{{ Route('jadwal.index') }}"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
+                  <li><a href="#"><i class="fa fa-graduation-cap"></i> Jadwal Kuliah</a></li>
                   @if(strcasecmp(Auth::User()->role,'admin')==0)
                   <li><a><i class="fa fa-cog"></i> Pengelolaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ Route('fakultas.index') }}"><i class="fa fa-university"></i> Fakultas</a></li>
-                      <li><a href="{{ Route('prodi.index') }}"><i class="fa fa-home"></i> Program Studi</a></li>
-                      <li><a href="{{ Route('sesi.index') }}"><i class="fa fa-exchange"></i> Sesi </a></li>
-                      <li><a href="{{ Route('sesiProdi.index') }}"><i class="fa fa-list-ol"></i> Sesi-Program Studi </a></li>
+                      <li><a href="#"><i class="fa fa-university"></i> Fakultas</a></li>
+                      <li><a href="#"><i class="fa fa-home"></i> Program Studi</a></li>
+                      <li><a href="#"><i class="fa fa-exchange"></i> Sesi </a></li>
+                      <li><a href="#"><i class="fa fa-list-ol"></i> Sesi-Program Studi </a></li>
                     </ul>
                   </li>
                   @endif
@@ -193,9 +193,9 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="{{ Route('Profile.index') }}"><i class="fa fa-user pull-right"></i> Profile</a></li>
+                    <li><a href="#"><i class="fa fa-user pull-right"></i> Profile</a></li>
 
-                    <li><a href="{{ Route('user.logout') }}"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
+                    <li><a href="#"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                   </ul>
                 </li>
 

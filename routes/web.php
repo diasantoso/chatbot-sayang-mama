@@ -60,7 +60,7 @@ Route::get('makul-index', 'MakulController@index')->name('makul.index');
 Route::get('makul-create', 'MakulController@create')->name('makul.create');
 Route::post('makul-store', 'MakulController@store')->name('makul.store');
 Route::get('makul-edit/{id}', 'MakulController@edit')->name('makul.edit');
-Route::patch('makul-update/{id}', 'MakulController@update')->name('makul.update');
+Route::patch('makul-update', 'MakulController@update')->name('makul.update');
 Route::get('makul-delete/{id}', 'MakulController@destroy')->name('makul.destroy');
 // Route::get('makulTerhapus-restore/{id}', 'MakulController@terhapusRestore')->name('makulTerhapus.restore');
 

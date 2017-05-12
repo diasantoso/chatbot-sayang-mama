@@ -20,9 +20,9 @@ class LoginController extends Controller
     {
     	  $totalUser = User::all()->where('deleted_at','=' ,NULL)->count();
     	  $totalProdi = Prodi::all()->where('deleted_at','=' ,NULL)->count();
-          $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
-          $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
-          return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
+        $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
+        $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
+        return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
     }
 
     public function doLogin(Request $request)

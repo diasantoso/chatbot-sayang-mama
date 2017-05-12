@@ -604,7 +604,7 @@ class BotController extends Controller
         $checkChatLog = Chat_Log_line::select('id')->where('chat_id', $userId)->first();
         $checkCountChatLog = $checkChatLog->count();
 
-        if($checkCountChatLog == 1) {
+        if($checkCountChatLog != 0) {
           $chat_log_data = Chat_Log_line::find($checkChatLog->id);
 
           DB::beginTransaction();

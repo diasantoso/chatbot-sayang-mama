@@ -27,7 +27,7 @@
                             <div class="x_title">
                               <h2> Tabel Kuis / Tugas  <small>Daftar kuis/tugas yang telah dimasukkan</small></h2>
                               <ul class="nav navbar-right panel_toolbox">
-                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Jadwal Baru</a>
+                                <a id="add-btn" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><label class="fa fa-plus-circle"></label>  Tambah Kuis/Tugas Baru</a>
                               </ul>
                               <div class="clearfix"></div>
                             </div>
@@ -57,7 +57,7 @@
                                     <td valign="middle">{{ $jadwal->type}}</td>
                                     <td valign="middle">{{ $jadwal->keyword}}</td>
                                     <td valign="middle">
-
+                                        <a id="delete-btn" class="btn btn-danger btn-xs" customParam="{{ route('jadwalTambahan.destroy', $jadwal->id) }}" href="#"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                   </tr>
                                   @endif
@@ -80,6 +80,80 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal Add -->
+      <div class="modal fade" id="myModalAdd" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tambah Jadwal Baru</h4>
+        </div>
+        <div class="modal-body">
+          <form name="formCreateUser" action="{{ route('jadwalTambahan.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Makul :</label>
+            <div class="col-sm-8">
+              <select class="select2_single form-control" required="" name="makul_id">
+                  @foreach($semuaMakul as $makul)
+                    @if($makul->deleted_at == NULL)
+                      <option value="{{ $makul->id }}">{{ $makul->nama }}</option>
+                    @endif
+                  @endforeach
+                </select>
+            </div>
+          </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Nama :</label>
+            <div class="col-sm-8">
+              <input type="text" name="nama" required="required" class="form-control" style="width:300px;"/>
+            </div>
+          </div>
+           <div class="form-group">
+            <label class="col-sm-3 control-label">Deskripsi :</label>
+            <div class="col-sm-8">
+              <input type="text" name="deskripsi" required="required" class="form-control" style="width:300px;"/>
+            </div>
+          </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Waktu Mulai :</label>
+            <div class="col-sm-8">
+              <input type="date" name="waktu_mulai" required="required" class="form-control" style="width:300px;"/>
+            </div>
+          </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Waktu Selesai :</label>
+            <div class="col-sm-8">
+              <input type="date" name="waktu_selesai" required="required" class="form-control" style="width:300px;"/>
+            </div>
+          </div>
+            <div class="form-group">
+            <label class="col-sm-3 control-label">Tipe :</label>
+            <div class="col-sm-8">
+                <select class="select2_single form-control" required="" name="type">
+                      <option value="kuis">Kuis</option>
+                      <option value="tugas">Tugas</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Keyword :</label>
+            <div class="col-sm-8">
+              <input type="text" name="keyword" required="required" class="form-control" style="width:300px;"/>
+            </div>
+          </div>
+          <div class="form-group modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+          </form>
+        </div>
+        </div>
+
+      </div>
+      </div>
 
 
 

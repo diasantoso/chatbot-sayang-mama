@@ -25,7 +25,7 @@ class MakulController extends Controller
     {
         //
         $semuaMakul= Makul::all();
-        return view("front.makul.index", compact("semuaMakul"));
+        return view('admin.makul', compact('semuaMakul'));
     }
 
     /**
@@ -36,7 +36,7 @@ class MakulController extends Controller
     public function create()
     {
         //
-        return view('front.makul.index');
+        return view('admin.makul');
     }
 
 
@@ -45,7 +45,7 @@ class MakulController extends Controller
          ['nama', 'LIKE', $nama]
          ])->get()->count();
 
-       if($sesiCheck == 0) {
+       if($makulCheck == 0) {
          return true;
        } else {
          return false;
@@ -72,7 +72,7 @@ class MakulController extends Controller
           DB::beginTransaction();
 
           try{
-            Sesi::create($makul_data);
+            Makul::create($makul_data);
 
             DB::commit();
 
@@ -120,7 +120,7 @@ class MakulController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
         $makul_data = $request->except('_token');
@@ -135,7 +135,7 @@ class MakulController extends Controller
           DB::beginTransaction();
 
           try{
-              $makul = Sesi::find($id);
+              $makul = Makul::find($makul_data['id']);
               $makul->update($makul_data);
 
               DB::commit();
@@ -171,7 +171,7 @@ class MakulController extends Controller
         $makul->deleted_by = Auth::user()->id;
         $makul->deleted_at = Carbon::now();
 
-        $sesi->save();
+        $makul->save();
 
         DB::commit();
 

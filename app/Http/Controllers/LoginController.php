@@ -18,10 +18,10 @@ class LoginController extends Controller
     }
      public function admindashboard()
     {
-    	  $totalUser = User::all()->count();
-    	  $totalProdi = Prodi::all()->count();
-          $totalFakultas = Fakultas::all()->count();
-          $totalSesi = Sesi::all()->count();
+    	  $totalUser = User::all()->where('deleted_at','=' ,NULL)->count();
+    	  $totalProdi = Prodi::all()->where('deleted_at','=' ,NULL)->count();
+          $totalFakultas = Fakultas::all()->where('deleted_at','=' ,NULL)->count();
+          $totalSesi = Sesi::All()->where('deleted_at','=' ,NULL)->count();
           return view('admin.dashboard', compact('totalUser','totalFakultas','totalProdi','totalSesi'));
     }
 

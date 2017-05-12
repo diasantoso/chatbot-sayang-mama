@@ -24,7 +24,7 @@
                       <div id="myTabContent2" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content11" aria-labelledby="home-tab">
 
-                          <!-------------------------------------------------------------------ARTIKEL INDEX--------------------------->
+                          <!-- <!-------------------------------------------------------------------ARTIKEL INDEX---------------------------> -->
                           <div class="x_panel">
                             <div class="x_title">
                               <h2> Tabel User <small>Daftar user yang telah dimasukkan</small></h2>
@@ -94,32 +94,38 @@
 				  <h4 class="modal-title">Add New User</h4>
 				</div>
 				<div class="modal-body">
-				  <form name="formCreateUser" action="{{ route('admin.store') }}" class="form-horizontal" method="post">
+				  <form name="formCreateUser" action="{{ route('admin.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Full Name :</label>
 						<div class="col-sm-8">
-							<input type="text" name="fullname" class="form-control" style="width:200px;"/>
+							<input type="text" required="required" name="fullname" class="form-control" style="width:200px;"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">NPM :</label>
 						<div class="col-sm-8">
-							<input type="text" name="npm" class="form-control" style="width:300px;"/>
+							<input type="number" name="npm" required="required" class="form-control" style="width:300px;"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Email :</label>
 						<div class="col-sm-8">
-							<input type="text" name="email" class="form-control" style="width:200px;"/>
+							<input type="email" required="required" name="email" class="form-control" style="width:200px;"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Password :</label>
 						<div class="col-sm-8">
-							<input type="text" name="password" class="form-control" style="width:200px;"/>
+							<input type="password" required="required" name="password" class="form-control" style="width:200px;"/>
 						</div>
 					</div>
+           <div class="form-group">
+                          <label class="col-sm-3 control-label">Foto :</label>
+                        <div class="col-sm-8">
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                        </div>
+          </div> 
 					<div class="form-group modal-footer">
 						<button type="submit" class="btn btn-primary">Save</button>
 					</div>
@@ -141,28 +147,34 @@
         <h4 class="modal-title">Update User</h4>
       </div>
       <div class="modal-body">
-        <form name="formUpdateUser" action="{{ route('user.updateadmin') }}" class="form-horizontal" method="post">
+        <form name="formUpdateUser" action="{{ route('user.updateadmin') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" class="form-control id" style="width:200px;"/>
         <div class="form-group">
           <label class="col-sm-3 control-label">Full Name :</label>
           <div class="col-sm-8">
-            <input type="text" name="fullname" class="form-control fullname" style="width:200px;"/>
+            <input type="text" name="fullname" required="required" class="form-control fullname" style="width:200px;"/>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label">NPM :</label>
           <div class="col-sm-8">
-            <input type="text" name="npm" class="form-control npm" style="width:300px;"/>
+            <input type="text" name="number" required="required" class="form-control npm" style="width:300px;"/>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label">Email :</label>
           <div class="col-sm-8">
-            <input type="text" name="email" class="form-control email" style="width:200px;"/>
+            <input type="email" name="email" required="required" class="form-control email" style="width:200px;"/>
           </div>
         </div>
+        <div class="form-group">
+                          <label class="col-sm-3 control-label">Foto :</label>
+                        <div class="col-sm-8">
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                        </div>
+        </div> 
         <div class="form-group modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
